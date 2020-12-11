@@ -1,0 +1,19 @@
+.form-business-input {
+    display: block;
+    width: 350px;
+    height: 40PX;
+    border: solid 1px #dadce1;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 300;
+    padding-left: 10px;
+  }
+  
+  .form-business-input:focus {
+    outline: none;
+    border: solid 1px #523BE4;
+  }
+  
+  .form-business-input:hover {
+    border: solid 1px #523BE4;
+  }

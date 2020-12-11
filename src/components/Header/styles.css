@@ -1,0 +1,161 @@
+.header {
+    background-color: rgb(82, 59, 228);
+  }
+  
+  .nav-container {
+    display: flex;
+    width: 100%;
+    max-width: 80%;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    margin: auto;
+  }
+  
+  .nav-logo {
+    color: rgb(255, 255, 255);
+    font-size: 21px;
+    font-weight: 700;
+  }
+  
+  .nav-logo:hover {
+    filter: brightness(1.2);
+  }
+  
+  .nav-menu {
+    display: flex;
+    max-width: 100%;
+    height: 100%;
+  }
+  
+  .nav-item {
+    width: calc((var(60px)) * 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .nav-fav__counter {
+    position: absolute;
+    top: 0%;
+    right: -8%;
+  }
+  
+  .nav-link__true {
+    color: rgb(82, 59, 228);
+    font-size: 14px;
+    font-weight: 600;
+    width: 24px;
+    height: 24px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+    padding: 8px;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 300ms;
+  }
+  
+  .nav-link__true:hover {
+    filter: brightness(1.2);
+    padding: 10px;
+  }
+  
+  .nav-link__null {
+    color: rgb(82, 59, 228);
+    font-size: 14px;
+    font-weight: 600;
+    width: 70px;
+    background-color: rgb(255, 255, 255);
+    border: solid 1px rgb(255, 255, 255);
+    border-radius: 3px;
+    padding: 8px;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 300ms;
+  }
+  
+  .nav-link__null:hover {
+    filter: brightness(1.2);
+  }
+  
+  .dropdown-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(3px);
+    background-color: rgba(43, 59, 74, 0.6);
+    color: rgb(255, 255, 255);
+    z-index: 2;
+  }
+  
+  .dropdown-menu {
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: rgb(82, 59, 228);
+    padding: 30px;
+    color: rgb(255, 255, 255);
+  }
+  
+  .menu-dropdown__icon {
+    padding-right: 8px;
+  }
+  
+  .menu-item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    filter: brightness(1.2);
+  }
+  
+  .menu-item__group {
+    position: relative;
+  }
+  
+  .menu-item__tag-online {
+    position: absolute;
+    top: 12%;
+    left: 60%;
+  }
+  
+  .menu-item__tag-sorteios {
+    position: absolute;
+    top: 12%;
+    left: 33%;
+  }
+  
+  .close-menu__icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .close-menu__icon:hover {
+    filter: brightness(1.2);
+    color: rgba(255, 255, 255, 0.8);
+  }
+  

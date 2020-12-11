@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import { loginUser } from '../../redux/actions/AuthActions';
 import FormInput from '../../components/FormInput';
 import CustomButton from '../../components/CustomButton';
-import EmailIcon from '@material-ui/icons/Email';
-import LockIcon from '@material-ui/icons/Lock';
 import './styles.css'
 
 const Login = ({ dispatchLoginAction }) => {
@@ -19,47 +17,43 @@ const Login = ({ dispatchLoginAction }) => {
     dispatchLoginAction(
       email,
       password,
-      (response) => console.log(response),
+      () => console.log('Logged In!'),
       (response) => setServerError(response.error)
     );
   };
 
   return (
     <div className="login-container">
-      <div>
+      <div className="login-banner">
+      </div>
+      <div className="login-content">
         <form className="login" onSubmit={handleOnSubmmit}>
-          <h2 className="login-title">Faça seu login</h2>
-          <div className="login-input__group">
-            <FormInput
-              id="login-input"
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={email}
-              handleChange={(e) => setEmail(e.target.value)}
-            />
-            <EmailIcon className="login-input__icon" />
-          </div>
-          <div className="login-input__group">
-            <FormInput
-              id="login-input__password"
-              type="password"
-              name="password"
-              placeholder="Senha"
-              value={password}
-              handleChange={(e) => setPassword(e.target.value)}
-            />
-            <LockIcon className="login-input__icon" />
-            <Link className="login-link__password" to="/forgot-password">
-              Esqueci minha senha
-            </Link>
-          </div>
-          <CustomButton id="login-button" name="Entrar" onClick={handleOnSubmmit} />
-          <div className="login-link__container">
-            <p className="login-link__text">Não tem uma conta? <span><Link to="/register" className="login-link">
-              Registre-se </Link></span></p>
-          </div>
+          <h1 className="login-title">Acesse sua conta</h1>
+          <p className="login-label">Email</p>
+          <FormInput
+            id="login-input"
+            type="email"
+            name="email"
+            placeholder="Digite seu email"
+            value={email}
+            handleChange={(e) => setEmail(e.target.value)}
+          />
+          <p className="login-label">Senha</p>
+          <FormInput
+            id="login-input__password"
+            type="password"
+            name="password"
+            placeholder="Digite sua senha"
+            value={password}
+            handleChange={(e) => setPassword(e.target.value)}
+          />
           {serverError ? <p className="login-error">{serverError}</p> : null}
+          <CustomButton id="login-button" name="Entrar" onClick={handleOnSubmmit} />
+          <Link className="login-link__password" to="/forgot-password">Esqueci minha senha</Link>
+          <div className="login-separator">
+            <p className="login-link__text">Ainda não tem uma conta?</p>
+            <CustomButton id="login-button-separator" name="Criar sua conta" onClick={() => { }} />
+          </div>
         </form>
       </div>
     </div>

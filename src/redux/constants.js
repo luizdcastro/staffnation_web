@@ -1,3 +1,11 @@
 export const API = "API";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const RESET_USER_INFO = "RESET_USER_INFO";
+export const DELETE_IMAGE = "DELETE_IMAGE";
+export const UPLOAD_IMAGE = "UPLOAD_IMAGE";
+export const CREATE_STORE = "CREATE_STORE";
+export const GET_STORE = "GET_STORE";
+export const GET_ALL_STORES = "GET_ALL_STORES";
+export const UPDATE_STORE = "UPDATE_STORE";
+export const DELETE_STORE = "DELETE_STORE";
+export const RESET_IMAGE = "RESET_IMAGE"
