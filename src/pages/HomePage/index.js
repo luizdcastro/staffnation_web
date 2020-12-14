@@ -1,14 +1,15 @@
 import React from 'react';
-import { connect } from "react-redux";
-
-import './styles.css'
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 const HomePage = () => {
     return (
         <div className="home">
-            <h1>Home Page</h1>
+            <p></p>
+
         </div>
-    )
+    );
 }
 
-export default connect(null, null)(HomePage);
+export default HomePage

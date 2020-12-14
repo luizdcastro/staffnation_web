@@ -21,11 +21,11 @@ export const getStore = (storeId) => ({
     },
 });
 
-export const getAllStores = (storeId) => ({
+export const getAllStores = (businessId) => ({
     type: constants.API,
     payload: {
         method: 'GET',
-        url: `/store/${storeId}`,
+        url: `/store?businessAccount=${businessId}`,
         success: (response) => fetchaAllStores(response),
     },
 });
@@ -35,7 +35,7 @@ export const deleteStore = (storeId) => ({
     payload: {
         method: 'DELETE',
         url: `/store/${storeId}`,
-        success: (response) => deletedImage(response),
+        success: (response) => deleteJob(response),
     },
 });
 
@@ -68,7 +68,7 @@ const updatedStore = (data) => ({
     payload: data,
 });
 
-const deletedImage = (data) => ({
+const deleteJob = (data) => ({
     type: constants.DELETE_STORE,
     payload: data,
 });

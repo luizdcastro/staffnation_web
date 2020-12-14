@@ -1,0 +1,36 @@
+.list-jobs{
+    margin-left: 240px;
+    padding-top: 70px;
+    height: 95vh;  
+}
+
+.list-jobs-bar{
+    background-color: #FFF;
+    box-shadow: 0 4px 8px 0px rgba(0,0,0,0.04);
+    height: 65px;
+    font-size: 1rem;
+    text-transform: none;
+}
+
+.list-jobs-main {
+  display: flex;
+  justify-content: center;
+  min-width: 500px;
+  margin-left: 8px;
+}
+
+.list-jobs-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  flex-wrap: wrap;
+  padding-top: 40px;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .list-jobs {
+      margin-left: 0
+    }
+  }

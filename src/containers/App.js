@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 
 import VeticalHeader from '../components/VerticalHeader'
 import HomePage from '../pages/HomePage'
-import JobsPage from '../pages/JobsPage'
+import CreateJobPage from '../pages/CreateJobPage'
+import ListJobsPage from '../pages/ListJobsPage'
 import LoginPage from '../pages/LoginPage'
 import BusinessPage from '../pages/BusinessPage'
 
@@ -31,7 +32,8 @@ const App = ({ user, dispatchLogout }) => {
 
             <Switch>
               <Route exact path="/" component={HomePage} />
-              <Route exact path="/jobs" component={JobsPage} />
+              <Route exact path="/create-job" component={CreateJobPage} />
+              <Route exact path="/list-jobs" component={ListJobsPage} />
               <Route exact path="/business" component={BusinessPage} />
               <Redirect to="/" />
             </Switch>

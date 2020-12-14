@@ -1,18 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import MaskedInput from 'react-text-mask'
+import TextField from '@material-ui/core/TextField';
 
-import FormBusiness from '../../components/FormBusiness'
 import CustomButton from '../../components/CustomButton'
-import InactiveButton from '../../components/InactiveButton'
 import UploadImage from '../../components/UploadImage'
+import StoreCard from '../../components/StoreCard'
 
-import { createStore } from '../../redux/actions/StoreActions'
+import { createStore, getAllStores } from '../../redux/actions/StoreActions'
 import { resetImage } from '../../redux/actions/ImageActions'
 
 import './styles.css'
 
-const BusinessPage = ({ image, user, dispatchCreateStore, dispatchResetImage }) => {
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
+}));
+
+function PhoneMaskCustom(props) {
+    const { inputRef, ...other } = props;
+
+    return (
+        <MaskedInput
+            {...other}
+            ref={(ref) => {
+                inputRef(ref ? ref.inputElement : null);
+            }}
+            mask={["(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/, /\d/]}
+            placeholderChar={'\u2000'}
+
+        />
+    );
+}
+
+PhoneMaskCustom.propTypes = {
+    inputRef: PropTypes.func.isRequired,
+};
+
+const BusinessPage = ({ image, user, store, dispatchCreateStore, dispatchResetImage, dispatchGetAllStores }) => {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('');
     const [phone, setPhone] = useState('')
@@ -27,6 +59,23 @@ const BusinessPage = ({ image, user, dispatchCreateStore, dispatchResetImage }) 
     const [createError, setCreateError] = useState('')
     const [uploadedFiles, setUploadedFiles] = useState([]);
     const uploadedImage = image.url
+
+    const classes = useStyles();
+    const [values, setValues] = React.useState({
+        textmask: '',
+        numberformat: '',
+    });
+
+    const handleChange = (event) => {
+        setValues({
+            ...values,
+            [event.target.name]: event.target.value,
+        });
+    }
+
+    useEffect(() => {
+        dispatchGetAllStores(user.businessId)
+    }, [])
 
     const getUserAddress = () => {
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -64,7 +113,7 @@ const BusinessPage = ({ image, user, dispatchCreateStore, dispatchResetImage }) 
         if (number.length) {
             setAddress({ ...address, number: number });
         }
-    }, [number, address]);
+    }, [number]);
 
     const handleCreateStore = (event) => {
         event.preventDefault();
@@ -76,6 +125,7 @@ const BusinessPage = ({ image, user, dispatchCreateStore, dispatchResetImage }) 
             address,
             uploadedImage,
             () => {
+                dispatchGetAllStores(user.businessId)
                 setName('');
                 setCategory('');
                 setCep('');
@@ -95,89 +145,132 @@ const BusinessPage = ({ image, user, dispatchCreateStore, dispatchResetImage }) 
     return (
         <div className="business">
             <div className="business-list">
-                <h2>Meus estabelecimentos</h2>
+                <div className="business-list-container">
+                    {store?.length
+                        ? store.map((item) => (
+                            <React.Fragment key={item._id}>
+                                <StoreCard
+                                    name={item.name}
+                                    category={item.category}
+                                    phone={item.phone}
+                                    street={item.address?.street}
+                                    number={item.address?.number}
+                                    neighborhood={item.address?.neighborhood}
+                                    city={item.address?.city}
+                                    state={item.address?.state}
+                                    image={item.image}
+                                />
+                            </React.Fragment>
+                        ))
+                        : null}
+
+                </div>
             </div>
             <div className="business-create">
                 <form className="busines-create-form" onSubmit={handleCreateStore}>
-                    <div className="busines-create-form__container">
+                    <div >
                         <h2 className="business-create-title">Cadastrar novo estabelecimento</h2>
-                        <p className="business-create-label">Nome do negócio</p>
-                        <FormBusiness
-                            value={name}
+                        <TextField
+                            label="Nome do negócio"
+                            size="small"
+                            variant="outlined"
                             onChange={(e) => setName(e.target.value)}
+                            value={name}
+                            style={{ width: 350 }}
                         />
-                        <p className="business-create-label">Categoria</p>
-                        <select
+                        <TextField
+                            label="Categoria"
+                            select
+                            size="small"
+                            variant="outlined"
+                            SelectProps={{
+                                native: true,
+                            }}
+                            style={{ width: 350, marginTop: 15 }}
                             onChange={(e) => setCategory(e.target.value)}
-                            className="business-create-selector">
-                            <option value="" defaultValue hidden> Selecionar</option>
+                        >
+                            <option value="" defaultValue hidden></option>
                             <option value="Bar">Bar</option>
                             <option value="Café">Café</option>
                             <option value="Restaurante">Resturante</option>
                             <option value="Casa Noturna">Casa Noturna</option>
-                        </select>
-                        <p className="business-create-label">Telefone</p>
-                        <MaskedInput
-                            className="form-business-input"
-                            mask={["(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/, /\d/]}
-                            placeholderChar={"\u2000"}
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                        </TextField>
+                        <TextField
+                            label="Telefone"
+                            size="small"
+                            variant="outlined"
+                            style={{ width: 350, marginTop: 15 }}
+                            InputProps={{
+                                inputComponent: PhoneMaskCustom,
+                            }}
+
                         />
-                        <p className="business-create-label">CEP</p>
-                        <FormBusiness
-                            maxLength={8}
+                        <TextField
+                            label="CEP"
+                            size="small"
+                            variant="outlined"
+                            onChange={(e) => setCep(e.target.value)}
                             value={cep}
-                            onChange={(e) => setCep(e.target.value)} />
+                            style={{ width: 350, marginTop: 15 }}
+                            inputProps={{ maxLength: 8 }}
+                        />
                         <div className="form-bussiness-adress">
                             <div>
-                                <p className="business-create-label">Rua</p>
-                                <FormBusiness
-                                    id="business-addess-street"
-                                    value={street}
+                                <TextField
+                                    label="Rua"
+                                    size="small"
+                                    variant="outlined"
                                     onChange={(e) => setStreet(e.target.value)}
+                                    value={street}
+                                    style={{ width: 277, marginTop: 15, marginRight: 3 }}
                                 />
                             </div>
                             <div>
-                                <p className="business-create-label"> Número</p>
-                                <FormBusiness id="business-address-number"
-                                    value={number}
+                                <TextField
+                                    label="Nº"
+                                    size="small"
+                                    variant="outlined"
                                     onChange={(e) => setNumber(e.target.value)}
+                                    value={number}
+                                    style={{ width: 70, marginTop: 15 }}
                                 />
                             </div>
                         </div>
                         <div className="form-bussiness-adress">
                             <div>
-                                <p className="business-create-label">Bairro</p>
-                                <FormBusiness id="business-address-bairro"
-                                    value={bairro}
+                                <TextField
+                                    label="Bairro"
+                                    size="small"
+                                    variant="outlined"
                                     onChange={(e) => setBairro(e.target.value)}
+                                    value={bairro}
+                                    style={{ width: 137, marginTop: 15, marginRight: 3 }}
                                 />
                             </div>
                             <div>
-                                <p className="business-create-label">Cidade</p>
-                                <FormBusiness
-                                    id="business-address-city"
-                                    value={city}
+                                <TextField
+                                    label="Cidade"
+                                    size="small"
+                                    variant="outlined"
                                     onChange={(e) => setCity(e.target.value)}
+                                    value={city}
+                                    style={{ width: 137, marginTop: 15, marginRight: 3, marginBottom: 15 }}
                                 />
                             </div>
                             <div>
-                                <p className="business-create-label">Estado</p>
-                                <FormBusiness
-                                    id="business-address-state"
-                                    value={state}
+                                <TextField
+                                    label="UF"
+                                    size="small"
+                                    variant="outlined"
                                     onChange={(e) => setState(e.target.value)}
+                                    value={state}
+                                    style={{ width: 70, marginTop: 15 }}
                                 />
                             </div>
                         </div>
-                        <p className="business-create-label">Imagem</p>
                         <UploadImage imageUrl uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} />
-                        {name?.length > 2 ?
-                            <CustomButton name="Cadastrar" id="business-create-button" onClick={handleCreateStore} />
-                            :
-                            <InactiveButton name="Cadastrar" id="business-create-button" />
-                        }
+                        <CustomButton name="Cadastrar" id="business-create-button" onClick={handleCreateStore} />
+
                     </div>
                 </form>
             </div>
@@ -190,11 +283,14 @@ const mapDispatchToProps = (dispatch) => ({
     dispatchCreateStore: (businessAccount, name, phone, category, address, image, onSuccess, onError) =>
         dispatch(createStore({ businessAccount, name, phone, category, address, image }, onSuccess, onError)),
     dispatchResetImage: () => dispatch(resetImage()),
+    dispatchGetAllStores: (businessAccount) => dispatch(getAllStores(businessAccount)),
+
 });
 
 const mapStateToProps = (state) => ({
     user: state.user,
     image: state.image,
+    store: state.store
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BusinessPage);

@@ -1,0 +1,61 @@
+.store-card {
+    display: flex;
+    background-color: #fff;
+    width: 500px;
+    height: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.04);
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 12px;
+    margin-bottom: 15px;
+
+}
+
+.store-image {
+    width: 125px;
+    height: 125px;
+    border-radius: 5px;    
+    object-fit: cover;
+    margin-left: 12px;
+}
+
+.store-main-content{
+    flex: 3;
+    margin-left: 12px;
+}
+
+.store-button-content{
+    flex: 1;
+    justify-content: flex-end;
+    margin-right: 12px;    
+}
+
+.store-button-edit{
+    color: #777
+}
+
+.store-button-edit:hover{
+    color: #523BE4
+}
+
+.store-card-title{
+    font-weight: 700;
+    font-size: 20px;
+    color: #484848;
+    line-height: 20px;
+    margin-top: 8px;
+}
+
+
+.store-card-category {
+    font-weight: 400;
+    font-size: 14px;
+    color: #484848;
+    margin-bottom: 18px;
+}
+
+.store-card-text {
+    font-weight: 400;
+    font-size: 14px;
+    color: #484848;
+}

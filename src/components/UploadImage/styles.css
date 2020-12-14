@@ -6,23 +6,20 @@
 }
 
 .image-dropzone {
-  border: 1px dashed #ddd;
-  border-radius: 4px;
+  display: flex;
+  border: 1px dashed rgba(0, 0, 0, 0.24);
+  border-radius: 5px;
   cursor: pointer;
   width: 350px;
-  height: 45px;
-  background-color: #f8fafb;
+  height: 44px;
   margin-left: 0;
   transition: height 0.2s ease;
   margin-top: 3px;
-  margin-bottom: 8px;
-  justify-content: center;
-  align-items: center;
-  display: flex
+  padding-left: 10px;
 }
 
 .image-dropzone:hover {
-  border-color: #78e5d5;
+  border-color: #484848;
 }
 
 .image-dropzone:focus {
@@ -36,6 +33,12 @@
   align-items: center;
   padding: 8px 0;
   font-size: 13px;
+}
+
+.file-list{
+  width: 350px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 

@@ -1,39 +1,39 @@
-.business {
+.createJob {
     display: flex;
     margin-left: 240px;
     padding-top: 70px;
-    flex-wrap: wrap;
     height: 95vh;
 }
 
-.business-list {
-    display: flex;
-    flex: 1;
-    justify-content: center;  
-}
-
-.business-list-container {
-    display: block;
-    margin-top: 5%;
-}
-
-.business-create{    
+.createJob-list {
     display: flex;
     flex: 1;
     justify-content: center;
 }
 
-.business-list-title{
+.createJob-list-container {
+    display: block;
+    margin-top: 5%;
+}
+
+.createJob-create{    
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.createJob-list-title{
     font-weight: 700;
     color: #484848;
 }
 
-.busines-create-form{
+.createJob-create-form{
     display: flex;
-    align-items: center;
     height: 600px;
     width: 500px;
     background-color: #fff;
+    justify-content: center;
+    align-items: center;  
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.04);
     margin-right: 10px;
     margin-top: 5%;
@@ -42,16 +42,15 @@
     padding-left: 75px;
 }
 
-
-.business-create-title{
+.createJob-create-title{
     font-weight: 700;
     font-size: 1.43rem;
     color: #484848;
     padding-bottom: 25px;
-    text-align: left;
+    margin-left: 30px;
 }
 
-.business-create-label{
+.createJob-create-label{
     font-weight: 400;
     color: #777;
     margin-bottom: 2px;   
@@ -59,7 +58,7 @@
     font-size: 16px;
 }
 
-.business-create-selector{
+.createJob-create-selector{
     width: 350px;
     height: 40px;
     background-color: #fff;
@@ -71,12 +70,12 @@
     margin-right: 10px;
 }
 
-.business-create-selector:focus{
+.createJob-create-selector:focus{
     outline: none;
     border: solid 1px #523BE4;
 }
 
-.business-create-selector:hover{
+.createJob-create-selector:hover{
     border: solid 1px #523BE4;
 }
 
@@ -84,41 +83,40 @@
     display: inline;
 }
 
-#business-create-button{
+#createJob-create-button{
     width: 350px;
     margin-top: 20px;
-    height: 45px;
 }
 
 .form-bussiness-adress{
     display: flex;
 }
 
-#business-addess-street{
+#createJob-addess-street{
     width: 277px;
     margin-right: 3px;
 }
 
-#business-address-number{
+#createJob-address-number{
     width: 70px;
 }
 
-#business-address-city{
+#createJob-address-city{
     width: 137px;
     margin-right: 3px;
 }
 
-#business-address-bairro{
+#createJob-address-bairro{
     width: 137px;
     margin-right: 3px;
 }
 
-#business-address-state{
+#createJob-address-state{
     width: 70px;
 }
 
 @media screen and (max-width: 600px) {
-    .business {
+    .jobs {
       margin-left: 0
     }
   }

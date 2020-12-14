@@ -5,6 +5,8 @@ import filesize from 'filesize';
 import Dropzone from 'react-dropzone';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
+import * as FiIcons from "react-icons/fi";
+
 
 import {
     uploadImage,
@@ -83,7 +85,7 @@ const UploadImage = ({ dispatchUploadImage, dispatchDeleteImage, uploadedFiles, 
     const UploadMessage = ({ message }) => {
         return (
             <div className="image-upload__message">
-                <p>{message}</p>
+                <p style={{ fontSize: '1rem', fontFamily: 'Roboto', fontWeight: 400, color: 'rgba(0, 0, 0, 0.54)', marginLeft: 10 }}>{message}</p>
             </div>
         );
     };
@@ -170,7 +172,7 @@ const UploadImage = ({ dispatchUploadImage, dispatchDeleteImage, uploadedFiles, 
 
     const renderDragMessage = (isDragActive, isDragReject) => {
         if (!isDragActive) {
-            return <UploadMessage message="Arraste e solte sua imagem" />;
+            return <UploadMessage message="Adicionar imagem" />;
         }
         if (isDragReject) {
             return <UploadMessage message="Arquivo não suportado" />;

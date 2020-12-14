@@ -9,7 +9,7 @@
 }
 
 body{
-	background-color:#f4f4f4;
+    background-color:#f4f4f4;
 }
 
 ul {
@@ -54,4 +54,5 @@ input[type="range"]::-webkit-slider-thumb {
 	border-radius: 50%;
 	border: solid 1px rgb(82, 59, 228);
 	cursor: pointer;
+	
 }
