@@ -1,15 +1,24 @@
+import { Home } from '@material-ui/icons';
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom'
+import { logoutUser } from "../../redux/actions/AuthActions";
 
-const HomePage = () => {
+
+import './styles.css'
+
+const HomePage = ({ dispatchLogout }) => {
     return (
         <div className="home">
-            <p></p>
-
+            <Link onClick={dispatchLogout}>Log out</Link>
         </div>
     );
 }
 
-export default HomePage
+const mapStateToProps = (state) => ({ user: state.user });
+
+const mapDispatchToProps = (dispatch) => ({
+    dispatchLogout: () => dispatch(logoutUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -22,7 +22,7 @@
 .list-jobs-container{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   max-width: 1100px;
   flex-wrap: wrap;
   padding-top: 40px;

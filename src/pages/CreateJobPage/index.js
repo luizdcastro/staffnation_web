@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import CustomButton from '../../components/CustomButton'
-import { getAllStores } from '../../redux/actions/StoreActions'
 import './styles.css'
 
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+
+import { getAllStores } from '../../redux/actions/StoreActions'
+import { createJob } from '../../redux/actions/JobActions'
 
 function PhoneMaskCustom(props) {
     const { inputRef, ...other } = props;
@@ -107,16 +109,31 @@ NumberFormatCustom.propTypes = {
 };
 
 
-const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
+const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob }) => {
     const [selectedStore, setSelecteStore] = useState('')
     const [avaliableStores, setAvaliableStores] = useState([])
     const [category, setCategory] = useState('')
-    const [time, setTime] = useState([])
+    const [positions, setPositions] = useState('')
+    const [date, setDate] = useState('')
+    const [timeStart, setTimeStart] = useState('')
+    const [timeEnd, setTimeEnd] = useState('')
+    const time = {
+        start: timeStart,
+        end: timeEnd
+    }
+    const [description, setDescription] = useState('')
+    let history = useHistory();
+
 
     const [values, setValues] = useState({
         textmask: '',
         numberformat: '',
     });
+
+    useEffect(() => {
+        dispatchGetAllStores(user.businessId)
+        setAvaliableStores(store)
+    }, [])
 
     const handleChange = (event) => {
         setValues({
@@ -125,15 +142,28 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
         });
     }
 
-    useEffect(() => {
-        dispatchGetAllStores(user.businessId)
-        setAvaliableStores(store)
-    }, [])
+    const handleCreateJob = (event) => {
+        event.preventDefault();
+        dispatchCreateJob(
+            user.businessId,
+            selectedStore,
+            category,
+            positions,
+            date,
+            time,
+            values.numberformat,
+            description,
+            history.push("/list-jobs"),
+            error => console.log(error),
+        )
+    }
+
+
 
     return (
         <div className="createJob">
             <div className="createJob-create">
-                <form className="createJob-create-form" onSubmit={() => { }}>
+                <form className="createJob-create-form" onSubmit={handleCreateJob}>
                     <div className="createJob-create-form__container">
                         <h2 className="createJob-create-title">Anunciar vaga de trabalho</h2>
                         <TextField
@@ -146,6 +176,7 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
                             }}
                             style={{ width: 350 }}
                             onChange={(e) => setSelecteStore(e.target.value)}
+                            value={selectedStore}
                         >
                             <option value="" defaultValue hidden></option>
                             {avaliableStores?.length
@@ -167,6 +198,7 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
                             }}
                             style={{ width: 350, marginTop: 15 }}
                             onChange={(e) => setCategory(e.target.value)}
+                            value={category}
                         >
                             <option value="" defaultValue hidden></option>
                             <option value="Bar">Bar</option>
@@ -185,6 +217,8 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
                                 native: true,
                             }}
                             style={{ width: 350, marginTop: 15 }}
+                            onChange={(e) => setPositions(e.target.value)}
+                            value={positions}
                         >
                             <option value="" defaultValue hidden></option>
                             <option value="1">1</option>
@@ -195,8 +229,6 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
                         </TextField>
                         <TextField
                             label="Pagamento"
-                            value={values.numberformat}
-                            onChange={handleChange}
                             name="numberformat"
                             id="formatted-numberformat-input"
                             size="small"
@@ -208,6 +240,8 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
                             inputProps={{
                                 maxlength: 9
                             }}
+                            onChange={handleChange}
+                            value={values.numberformat}
                         />
                         <TextField
                             label="Data"
@@ -217,6 +251,9 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
                             InputProps={{
                                 inputComponent: DateMaskCustom,
                             }}
+                            onChange={(e) => setDate(e.target.value)}
+                            valeu={date}
+
                         />
                         <div className="form-bussiness-adress">
                             <div>
@@ -228,6 +265,8 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
                                     InputProps={{
                                         inputComponent: TimeMskCustom,
                                     }}
+                                    onChange={(e) => setTimeStart(e.target.value)}
+                                    valeu={timeStart}
                                 />
                             </div>
                             <div>
@@ -239,6 +278,8 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
                                     InputProps={{
                                         inputComponent: TimeMskCustom,
                                     }}
+                                    onChange={(e) => setTimeEnd(e.target.value)}
+                                    valeu={timeEnd}
                                 />
                             </div>
                         </div>
@@ -254,10 +295,10 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
                             inputProps={{
                                 maxlength: 152
                             }}
-
+                            onChange={(e) => setDescription(e.target.value)}
+                            valeu={description}
                         />
-                        <CustomButton name="Cadastrar" id="createJob-create-button" onClick={() => { }} />
-
+                        <CustomButton name="Cadastrar" id="createJob-create-button" onClick={handleCreateJob} />
                     </div>
                 </form>
             </div>
@@ -268,6 +309,8 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores }) => {
 
 const mapDispatchToProps = (dispatch) => ({
     dispatchGetAllStores: (businessAccount) => dispatch(getAllStores(businessAccount)),
+    dispatchCreateJob: (businessAccount, store, category, positions, date, time, payment, description, onSuccess, onError) =>
+        dispatch(createJob({ businessAccount, store, category, positions, date, time, payment, description }, onSuccess, onError))
 });
 
 const mapStateToProps = (state) => ({

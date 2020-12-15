@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import { Link } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,9 +17,9 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-
 import * as FiIcons from 'react-icons/fi'
 
+import { logoutUser } from "../../redux/actions/AuthActions";
 
 const drawerWidth = 240;
 
@@ -51,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ResponsiveDrawer(props, child) {
+const VerticalDrawer = (props, dispatchLogout) => {
+
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -125,16 +127,11 @@ function ResponsiveDrawer(props, child) {
                         </ListItemIcon>
                         <ListItemText primary="Configurações" />
                     </ListItem>
-                    <ListItem button component={Link} to="/jobs">
-                        <ListItemIcon>
-                            <FiIcons.FiLogOut size={24} color="#523BE4" />
-                        </ListItemIcon>
-                        <ListItemText primary="Sair" />
-                    </ListItem>
                 </div>
             </List>
         </div>
-    );
+    )
+
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -160,6 +157,7 @@ function ResponsiveDrawer(props, child) {
             <nav className={classes.drawer} aria-label="mailbox folders">
                 <Hidden smUp implementation="css">
                     <Drawer
+                        dispatchLogout
                         container={container}
                         variant="temporary"
                         anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -192,5 +190,10 @@ function ResponsiveDrawer(props, child) {
         </div>
     );
 }
+const mapStateToProps = (state) => ({ user: state.user });
 
-export default ResponsiveDrawer;
+const mapDispatchToProps = (dispatch) => ({
+    dispatchLogout: () => dispatch(logoutUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(VerticalDrawer);

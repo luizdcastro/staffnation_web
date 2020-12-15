@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { connect } from "react-redux";
 import MaskedInput from 'react-text-mask'
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 
 import CustomButton from '../../components/CustomButton'
 import UploadImage from '../../components/UploadImage'
-import StoreCard from '../../components/StoreCard'
 
-import { createStore, getAllStores } from '../../redux/actions/StoreActions'
+import { getStore, updateStore } from '../../redux/actions/StoreActions'
 import { resetImage } from '../../redux/actions/ImageActions'
+import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 
 import './styles.css'
 
@@ -33,14 +36,7 @@ PhoneMaskCustom.propTypes = {
     inputRef: PropTypes.func.isRequired,
 };
 
-const BusinessPage = ({
-    image,
-    user,
-    store,
-    dispatchCreateStore,
-    dispatchResetImage,
-    dispatchGetAllStores,
-}) => {
+const EditStorePage = ({ image, user, store, dispatchResetImage, dispatchGetStore, dispatchUpdateStore }) => {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('');
     const [phone, setPhone] = useState('')
@@ -54,23 +50,42 @@ const BusinessPage = ({
     const [cepError, setCepError] = useState('')
     const [createError, setCreateError] = useState('')
     const [uploadedFiles, setUploadedFiles] = useState([]);
-    const uploadedImage = image.url
+    let uploadedImage = image.url
+    let history = useHistory();
+    const { storeId } = useParams()
 
-    const [values, setValues] = React.useState({
-        textmask: '',
-        numberformat: '',
-    });
+    useEffect(() => dispatchGetStore(storeId), [storeId,])
 
-    const handleChange = (event) => {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value,
-        });
-    }
+    const editableData = store
 
-    useEffect(() => {
-        dispatchGetAllStores(user.businessId)
-    }, [])
+    useMemo(() => {
+        if (editableData.data) {
+            setName(editableData.data?.name);
+            setCategory(editableData.data?.category)
+            setPhone(editableData.data?.phone)
+            setCep(editableData.data?.address.cep)
+            setNumber(editableData.data?.address.number)
+            let uploadedImage = editableData.data?.image
+        }
+    }, [editableData]);
+
+    const handleUpdateStore = (event) => {
+        event.preventDefault();
+        dispatchUpdateStore(
+            name,
+            phone,
+            category,
+            address,
+            uploadedImage,
+            storeId,
+            () => {
+                history.push("/business");
+                dispatchResetImage()
+            },
+            (response) => { setCreateError(response.error); console.log(createError) }
+        );
+    };
+
 
     const getUserAddress = () => {
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -110,62 +125,12 @@ const BusinessPage = ({
         }
     }, [number]);
 
-    const handleCreateStore = (event) => {
-        event.preventDefault();
-        dispatchCreateStore(
-            user.businessId,
-            name,
-            phone,
-            category,
-            address,
-            uploadedImage,
-            () => {
-                dispatchGetAllStores(user.businessId)
-                setName('');
-                setCategory('');
-                setCep('');
-                setStreet('');
-                setNumber('');
-                setBairro('');
-                setPhone('');
-                setCity('');
-                setState('');
-                setUploadedFiles([])
-                dispatchResetImage()
-            },
-            (response) => { setCreateError(response.error); console.log(createError) }
-        );
-    };
-
     return (
-        <div className="business">
-            <div className="business-list">
-                <div className="business-list-container">
-                    {store?.length
-                        ? store.map((item) => (
-                            <React.Fragment key={item._id}>
-                                <StoreCard
-                                    name={item.name}
-                                    category={item.category}
-                                    phone={item.phone}
-                                    street={item.address?.street}
-                                    number={item.address?.number}
-                                    neighborhood={item.address?.neighborhood}
-                                    city={item.address?.city}
-                                    state={item.address?.state}
-                                    image={item.image}
-                                    storeId={item._id}
-                                />
-                            </React.Fragment>
-                        ))
-                        : null}
-
-                </div>
-            </div>
-            <div className="business-create">
-                <form className="busines-create-form" onSubmit={handleCreateStore}>
+        <div className="editStore">
+            <div className="editStore-create">
+                <form className="busines-create-form" onSubmit={handleUpdateStore}>
                     <div >
-                        <h2 className="business-create-title">Cadastrar novo estabelecimento</h2>
+                        <h2 className="editStore-create-title">Editar estabelecimento</h2>
                         <TextField
                             label="Nome do negócio"
                             size="small"
@@ -175,17 +140,17 @@ const BusinessPage = ({
                             style={{ width: 350 }}
                         />
                         <TextField
-                            label="Categoria"
                             select
                             size="small"
                             variant="outlined"
                             SelectProps={{
                                 native: true,
                             }}
+                            value={category}
                             style={{ width: 350, marginTop: 15 }}
                             onChange={(e) => setCategory(e.target.value)}
                         >
-                            <option value="" defaultValue hidden></option>
+                            <option value="" defaultValue hidden>Categoria</option>
                             <option value="Bar">Bar</option>
                             <option value="Café">Café</option>
                             <option value="Restaurante">Resturante</option>
@@ -193,6 +158,7 @@ const BusinessPage = ({
                         </TextField>
                         <TextField
                             label="Telefone"
+                            value={phone}
                             size="small"
                             variant="outlined"
                             style={{ width: 350, marginTop: 15 }}
@@ -265,7 +231,7 @@ const BusinessPage = ({
                             </div>
                         </div>
                         <UploadImage imageUrl uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} />
-                        <CustomButton name="Cadastrar" id="business-create-button" onClick={handleCreateStore} />
+                        <CustomButton name="Salvar" id="editStore-create-button" onClick={handleUpdateStore} />
 
                     </div>
                 </form>
@@ -276,10 +242,10 @@ const BusinessPage = ({
 
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatchCreateStore: (businessAccount, name, phone, category, address, image, onSuccess, onError) =>
-        dispatch(createStore({ businessAccount, name, phone, category, address, image }, onSuccess, onError)),
     dispatchResetImage: () => dispatch(resetImage()),
-    dispatchGetAllStores: (businessAccount) => dispatch(getAllStores(businessAccount)),
+    dispatchGetStore: (storeId) => dispatch(getStore(storeId)),
+    dispatchUpdateStore: (name, phone, category, address, image, storeId, onSuccess, onError) =>
+        dispatch(updateStore({ name, phone, category, address, image }, storeId, onSuccess, onError)),
 });
 
 const mapStateToProps = (state) => ({
@@ -288,4 +254,4 @@ const mapStateToProps = (state) => ({
     store: state.store
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BusinessPage);
+export default connect(mapStateToProps, mapDispatchToProps)(EditStorePage);

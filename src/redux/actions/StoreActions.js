@@ -39,12 +39,15 @@ export const deleteStore = (storeId) => ({
     },
 });
 
-export const updateStore = (storeId) => ({
+export const updateStore = (data, storeId, onSuccess, onError) => ({
     type: constants.API,
     payload: {
         method: 'PATCH',
-        url: `/store/${storeId}`,
+        url: `/store/update/${storeId}`,
+        data,
         success: (response) => updatedStore(response),
+        postProccessSuccess: onSuccess,
+        postProccessError: onError,
     },
 });
 

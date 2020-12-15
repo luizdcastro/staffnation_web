@@ -1,0 +1,112 @@
+.editStore {
+    display: flex;
+    margin-left: 240px;
+    padding-top: 70px;
+    flex-wrap: wrap;
+    height: 95vh;
+}
+
+.editStore-create{    
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.editStore-create-form{
+    display: flex;
+    align-items: center;
+    height: 600px;
+    width: 500px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.04);
+    margin-right: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10px;
+    padding-left: 75px;
+}
+
+
+.editStore-create-title{
+    font-weight: 700;
+    font-size: 1.43rem;
+    color: #484848;
+    padding-bottom: 25px;
+    text-align: left;
+    margin-left: 48px;
+}
+
+.editStore-create-label{
+    font-weight: 400;
+    color: #777;
+    margin-bottom: 2px;   
+    margin-top: 5px;     
+    font-size: 16px;
+}
+
+.editStore-create-selector{
+    width: 350px;
+    height: 40px;
+    background-color: #fff;
+    border: solid 1px #dadce1;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 300;
+    padding-left: 10px;
+    margin-right: 10px;
+}
+
+.editStore-create-selector:focus{
+    outline: none;
+    border: solid 1px #523BE4;
+}
+
+.editStore-create-selector:hover{
+    border: solid 1px #523BE4;
+}
+
+.categories-selected-box {
+    display: inline;
+}
+
+#editStore-create-button{
+    width: 350px;
+    margin-top: 20px;
+    height: 45px;
+}
+
+.form-bussiness-adress{
+    display: flex;
+}
+
+#editStore-addess-street{
+    width: 277px;
+    margin-right: 3px;
+}
+
+#editStore-address-number{
+    width: 70px;
+}
+
+#editStore-address-city{
+    width: 137px;
+    margin-right: 3px;
+}
+
+#editStore-address-bairro{
+    width: 137px;
+    margin-right: 3px;
+}
+
+#editStore-address-state{
+    width: 70px;
+}
+
+@media screen and (max-width: 600px) {
+    .editStore {
+      margin-left: 0
+    }
+  }
+
+
+
