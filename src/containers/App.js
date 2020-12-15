@@ -9,6 +9,7 @@ import ListJobsPage from '../pages/ListJobsPage'
 import LoginPage from '../pages/LoginPage'
 import BusinessPage from '../pages/BusinessPage'
 import EditStorePage from '../pages/EditStorePage'
+import EditJobPage from '../pages/EditJobPage'
 
 import { logoutUser } from "../redux/actions/AuthActions";
 
@@ -37,6 +38,7 @@ const App = ({ user, dispatchLogout }) => {
               <Route exact path="/list-jobs" component={ListJobsPage} />
               <Route exact path="/business" component={BusinessPage} />
               <Route exact path="/edit-store/:storeId" component={EditStorePage} />
+              <Route exact path="/edit-job/:jobId" component={EditJobPage} />
               <Redirect to="/" />
             </Switch>
           )}

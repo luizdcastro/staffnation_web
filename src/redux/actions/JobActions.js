@@ -39,12 +39,15 @@ export const deleteJob = (jobId) => ({
     },
 });
 
-export const updateJob = (jobId) => ({
+export const updateJob = (data, jobId, onSuccess, onError) => ({
     type: constants.API,
     payload: {
         method: 'PATCH',
         url: `/job/${jobId}`,
+        data,
         success: (response) => updatedJob(response),
+        postProccessSuccess: onSuccess,
+        postProccessError: onError,
     },
 });
 

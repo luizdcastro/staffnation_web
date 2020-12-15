@@ -51,6 +51,7 @@ const ListJobsPage = ({ user, job, dispatchGetAllJobs }) => {
                                         timeStart={item.time.start}
                                         timeEnd={item.time.end}
                                         image={item.store.image}
+                                        jobId={item._id}
                                     />
                                 </React.Fragment>
                             ))

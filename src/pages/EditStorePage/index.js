@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import MaskedInput from 'react-text-mask'
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 
 import CustomButton from '../../components/CustomButton'
 import UploadImage from '../../components/UploadImage'
@@ -36,7 +35,7 @@ PhoneMaskCustom.propTypes = {
     inputRef: PropTypes.func.isRequired,
 };
 
-const EditStorePage = ({ image, user, store, dispatchResetImage, dispatchGetStore, dispatchUpdateStore }) => {
+const EditStorePage = ({ image, store, dispatchResetImage, dispatchGetStore, dispatchUpdateStore }) => {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('');
     const [phone, setPhone] = useState('')
@@ -143,10 +142,14 @@ const EditStorePage = ({ image, user, store, dispatchResetImage, dispatchGetStor
                             select
                             size="small"
                             variant="outlined"
+                            label="Categoria"
                             SelectProps={{
                                 native: true,
                             }}
                             value={category}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                             style={{ width: 350, marginTop: 15 }}
                             onChange={(e) => setCategory(e.target.value)}
                         >

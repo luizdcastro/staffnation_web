@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import * as FiIcons from 'react-icons/fi'
 
 
-const JobCard = ({ name, category, payment, date, timeStart, timeEnd, image }) => {
+const JobCard = ({ name, category, payment, date, timeStart, timeEnd, image, jobId }) => {
     return (
         <div className="job-card">
             <img src={image} className="job-image" />
@@ -16,8 +16,8 @@ const JobCard = ({ name, category, payment, date, timeStart, timeEnd, image }) =
                 <p className="job-card-text">Horário: {timeStart} às {timeEnd}</p>
             </div>
             <div className="job-button-content">
-                <Link className="job-button-edit">
-                    <FiIcons.FiMenu size={25} />
+                <Link className="job-button-edit" to={`/edit-job/${jobId}`}>
+                    <FiIcons.FiEdit size={25} />
                 </Link>
             </div>
         </div>
