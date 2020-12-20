@@ -1,89 +1,74 @@
-.job-card {
+.staffPending-card {
     display: flex;
     background-color: #fff;
     width: 500px;
     min-width: 450px;
     height: 150px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.04);
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-top: 12px;
     margin-bottom: 15px;
 }
 
-.job-image {
-    width: 125px;
-    height: 125px;
+.staffPending-image {
+    width: 120px;
+    height: 120px;
     border-radius: 5px;    
     object-fit: cover;
     margin-left: 12px;
 }
 
-.job-main-content{
+.staffPending-main-content{
     flex: 3;
     margin-left: 12px;
 }
 
-.job-button-content{
+.staffPending-button-content{
     flex: 1;
-    display: flex;
+    display: block;
     justify-content: flex-end;
     margin-right: 12px;    
+    margin-bottom: 15px;
 }
 
-.job-button-edit{
-    color: #777;
-    margin-left: 8px;
-    padding: 5px;
-    width: 45px;
-    height: 45px;
+.staffPending-category-box {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.job-button-edit:hover{
+    padding-left: 4px;
+    padding-right: 4px;
+    border: solid 1px #523BE4;
     color: #523BE4;
-    background-color: rgba(0,0,0,0.04);
-    border-radius: 50%;
+    border-radius: 5px;
+    margin-right: 5px;
 }
 
-.job-button-next{
-    color: #777;
-    padding: 5px;
-    width: 45px;
-    height: 45px;
+.staffPending-button-payment{  
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.job-button-next:hover{
+    border: solid 1px #523BE4;
     color: #523BE4;
-    background-color: rgba(0,0,0,0.04);
-    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
 }
 
-
-.job-card-title{
+.staffPending-card-title{
     font-weight: 700;
-    font-size: 20px;
+    font-size: 17px;
     color: #484848;
     line-height: 20px;
     margin-top: 8px;
 }
 
-
-.job-card-category {
+.staffPending-card-category {
     font-weight: 400;
     font-size: 14px;
     color: #484848;
     margin-bottom: 18px;
 }
 
-.job-card-text {
+.staffPending-card-text {
     font-weight: 400;
-    font-size: 13px;
+    font-size: 14px;
     color: #484848;
 }

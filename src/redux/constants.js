@@ -1,4 +1,6 @@
 export const API = "API";
+export const GET_ME = "GET_ME";
+export const UPDATE_BUSINESS = "UPDATE_BUSINESS";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const RESET_USER_INFO = "RESET_USER_INFO";
 export const DELETE_IMAGE = "DELETE_IMAGE";
@@ -14,3 +16,8 @@ export const GET_JOB = "GET_JOB";
 export const GET_ALL_JOBS = "GET_ALL_JOBS";
 export const UPDATE_JOB = "UPDATE_JOB";
 export const DELETE_JOB = "DELETE_JOB";
+export const CREATE_ACCEPTED_JOB = "CREATE_ACCEPTED_JOB";
+export const REMOVE_ACCEPTED_JOB = "REMOVE_ACCEPTED_JOB";
+export const CREATE_PENDING_JOB = "CREATE_PENDING_JOB";
+export const REMOVE_PENDING_JOB = "REMOVE_PENDING_JOB";
+export const GET_ALL_STAFFS = 'GET_ALL_STAFFS';

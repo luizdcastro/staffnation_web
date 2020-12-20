@@ -51,6 +51,55 @@ export const updateJob = (data, jobId, onSuccess, onError) => ({
     },
 });
 
+export const createAccepted = (data, jobId, onSuccess, onError) => ({
+    type: constants.API,
+    payload: {
+        method: 'PATCH',
+        url: `/job/createAccepted/${jobId}`,
+        data,
+        success: (response) => acceptedJob(response),
+        postProccessSuccess: onSuccess,
+        postProccessError: onError,
+    },
+});
+
+export const removeAccepted = (data, jobId, onSuccess, onError) => ({
+    type: constants.API,
+    payload: {
+        method: 'PATCH',
+        url: `/job/removeAccepted/${jobId}`,
+        data,
+        success: (response) => removedAccepted(response),
+        postProccessSuccess: onSuccess,
+        postProccessError: onError,
+    },
+});
+
+export const createPending = (data, jobId, onSuccess, onError) => ({
+    type: constants.API,
+    payload: {
+        method: 'PATCH',
+        url: `/job/createPending/${jobId}`,
+        data,
+        success: (response) => pendedJob(response),
+        postProccessSuccess: onSuccess,
+        postProccessError: onError,
+    },
+});
+
+export const removePending = (data, jobId, onSuccess, onError) => ({
+    type: constants.API,
+    payload: {
+        method: 'PATCH',
+        url: `/job/removePending/${jobId}`,
+        data,
+        success: (response) => removedPending(response),
+        postProccessSuccess: onSuccess,
+        postProccessError: onError,
+    },
+});
+
+
 const createdJob = (data) => ({
     type: constants.CREATE_JOB,
     payload: data,
@@ -73,6 +122,26 @@ const updatedJob = (data) => ({
 
 const deletedJob = (data) => ({
     type: constants.DELETE_JOB,
+    payload: data,
+});
+
+const acceptedJob = (data) => ({
+    type: constants.CREATE_ACCEPTED_JOB,
+    payload: data,
+});
+
+const removedAccepted = (data) => ({
+    type: constants.REMOVE_ACCEPTED_JOB,
+    payload: data,
+});
+
+const pendedJob = (data) => ({
+    type: constants.CREATE_PENDING_JOB,
+    payload: data,
+});
+
+const removedPending = (data) => ({
+    type: constants.REMOVE_PENDING_JOB,
     payload: data,
 });
 

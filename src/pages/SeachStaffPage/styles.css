@@ -1,0 +1,22 @@
+.search-staff {
+    display: flex;
+    justify-content: center;
+    margin-left: 240px;
+    height: 95vh; 
+    margin-top: 70px; 
+}
+
+.search-staff-container{
+  display: block;
+  width: 1050px;
+  min-width: 500;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .search-staff {
+      margin-left: 0
+    }
+  }

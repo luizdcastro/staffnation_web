@@ -7,7 +7,7 @@ import * as FiIcons from 'react-icons/fi'
 const StoreCard = ({ name, category, phone, street, number, neighborhood, city, state, image, storeId }) => {
     return (
         <div className="store-card">
-            <img src={image} className="store-image" />
+            <img src={image} alt="" className="store-image" />
             <div className="store-main-content">
                 <p className="store-card-title">{name}</p>
                 <p className="store-card-category">Categoria: {category}</p>

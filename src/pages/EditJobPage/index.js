@@ -11,7 +11,7 @@ import NumberFormat from 'react-number-format';
 import TextField from '@material-ui/core/TextField';
 
 import { getAllStores } from '../../redux/actions/StoreActions'
-import { createJob, getJob, updateJob } from '../../redux/actions/JobActions'
+import { getJob, updateJob } from '../../redux/actions/JobActions'
 
 function PhoneMaskCustom(props) {
     const { inputRef, ...other } = props;
@@ -162,7 +162,7 @@ const EditJobPage = ({ user, store, job, dispatchGetAllStores, dispatchGetJob, d
     }, [])
 
 
-    const handleCreateJob = (event) => {
+    const handleEditJob = (event) => {
         event.preventDefault();
         dispatchUpdateJob(
             selectedStore,
@@ -179,11 +179,11 @@ const EditJobPage = ({ user, store, job, dispatchGetAllStores, dispatchGetJob, d
     }
 
     return (
-        <div className="createJob">
-            <div className="createJob-create">
-                <form className="createJob-create-form" onSubmit={handleCreateJob}>
-                    <div className="createJob-create-form__container">
-                        <h2 className="createJob-create-title">Editar vaga de trabalho</h2>
+        <div className="editJob">
+            <div className="editJob-create">
+                <form className="editJob-create-form" onSubmit={handleEditJob}>
+                    <div className="editJob-create-form__container">
+                        <h2 className="editJob-create-title">Editar vaga de trabalho</h2>
                         <TextField
                             label="Estabelecimento"
                             select
@@ -325,7 +325,7 @@ const EditJobPage = ({ user, store, job, dispatchGetAllStores, dispatchGetJob, d
                             onChange={(e) => setDescription(e.target.value)}
                             value={description}
                         />
-                        <CustomButton name="Cadastrar" id="createJob-create-button" onClick={handleCreateJob} />
+                        <CustomButton name="Cadastrar" id="editJob-create-button" onClick={handleEditJob} />
                     </div>
                 </form>
             </div>

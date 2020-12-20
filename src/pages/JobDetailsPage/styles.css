@@ -1,0 +1,42 @@
+.jobDetails {
+  display: flex;
+  justify-content: center;
+  margin-left: 240px;
+  padding-top: 70px;
+  height: 95vh;    
+}
+
+.job-details-info{
+  height: 300px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.04);
+  background-color: #FFF;
+  padding-left: 15px;
+  padding-top: 15px;
+}
+
+.job-details-text{
+  font-size: 15px;
+  color: #484848;
+}
+
+.job-details-staff{  
+  flex: 1;
+  min-width: 500px;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.job-details-candidates{
+  flex: 1;
+  display: flex;
+  min-width: 500px;
+  margin-left: 25px;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 600px) {
+    .jobDetails {
+      margin-left: 0
+    }
+  }

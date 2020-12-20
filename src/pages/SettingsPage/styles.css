@@ -1,0 +1,47 @@
+.settings {
+    display: flex;
+    justify-content: center;
+    margin-left: 240px;
+    height: 95vh; 
+    margin-top: 70px; 
+}
+
+.settings-form{
+  display: flex;
+  align-items: center;
+  height: 700px;
+  width: 500px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.04);
+  margin-right: 10px;
+  margin-bottom: 5%;
+  margin-left: 10px;
+  padding-left: 75px;
+}
+
+.settings-form-title{
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+#settings-button{
+  width: 350px;
+  margin-top: 20px;
+  height: 45px;
+}
+
+
+#settings-button-light{
+  width: 350px;
+  margin-top: 20px;
+  height: 45px;
+  background-color: #fff;
+  color: #523BE4;
+}
+
+@media screen and (max-width: 600px) {
+    .settings {
+      margin-left: 0
+    }
+  }

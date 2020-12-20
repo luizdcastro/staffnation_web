@@ -21,26 +21,26 @@ const ListJobsPage = ({ user, job, dispatchGetAllJobs }) => {
         dispatchGetAllJobs(user.businessId)
     }, [])
 
-
     return (
         <div className="list-jobs">
-            <div style={{ flexGrow: 1, marginTop: -50, paddingTop: 0 }}>
-                <Tabs
-                    value={value}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    onChange={handleChange}
-                    aria-label="disabled tabs example"
-                    variant="fullWidth"
-                >
-                    <Tab label="Vagas abertas" style={{ textTransform: 'none', fontSize: '1rem' }} onClick={() => { setOpenJobs(true); setCloseJobs(false) }} />
-                    <Tab label="Vagas fechadas" style={{ textTransform: 'none', fontSize: '1rem' }} onClick={() => { setOpenJobs(false); setCloseJobs(true) }} />
-                </Tabs>
-            </div>
-            {openJobs ?
-                <div className="list-jobs-main" >
-                    <div className="list-jobs-container">
-                        {job?.length
+            <div style={{ display: 'block', width: 1050 }}>
+                <div style={{ flexGrow: 1, marginTop: -30 }}>
+                    <Tabs
+                        value={value}
+                        indicatorColor="primary"
+                        textColor="primary"
+                        onChange={handleChange}
+                        aria-label="disabled tabs example"
+                        variant="fullWidth"
+                        style={{ marginBottom: 20 }}
+                    >
+                        <Tab label="Vagas abertas" style={{ textTransform: 'none', fontSize: '1rem' }} onClick={() => { setOpenJobs(true); setCloseJobs(false) }} />
+                        <Tab label="Vagas fechadas" style={{ textTransform: 'none', fontSize: '1rem' }} onClick={() => { setOpenJobs(false); setCloseJobs(true) }} />
+                    </Tabs>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                    {openJobs ?
+                        job?.length
                             ? job.map((item) => (
                                 <React.Fragment key={item._id}>
                                     <JobCard
@@ -55,20 +55,15 @@ const ListJobsPage = ({ user, job, dispatchGetAllJobs }) => {
                                     />
                                 </React.Fragment>
                             ))
-                            : null}
-
-                    </div>
-                </div>
-
-                :
-                <div>
-                    <p>Close Jobs</p>
-                </div>
-            }
-        </div >
+                            : null
+                        :
+                        null
+                    }
+                </div >
+            </div >
+        </div>
     )
 }
-
 
 const mapDispatchToProps = (dispatch) => ({
     dispatchGetAllJobs: (businessAccount) => dispatch(getAllJobs(businessAccount)),

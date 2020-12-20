@@ -56,18 +56,6 @@ const BusinessPage = ({
     const [uploadedFiles, setUploadedFiles] = useState([]);
     const uploadedImage = image.url
 
-    const [values, setValues] = React.useState({
-        textmask: '',
-        numberformat: '',
-    });
-
-    const handleChange = (event) => {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value,
-        });
-    }
-
     useEffect(() => {
         dispatchGetAllStores(user.businessId)
     }, [])
@@ -138,137 +126,139 @@ const BusinessPage = ({
     };
 
     return (
-        <div className="business">
-            <div className="business-list">
-                <div className="business-list-container">
-                    {store?.length
-                        ? store.map((item) => (
-                            <React.Fragment key={item._id}>
-                                <StoreCard
-                                    name={item.name}
-                                    category={item.category}
-                                    phone={item.phone}
-                                    street={item.address?.street}
-                                    number={item.address?.number}
-                                    neighborhood={item.address?.neighborhood}
-                                    city={item.address?.city}
-                                    state={item.address?.state}
-                                    image={item.image}
-                                    storeId={item._id}
-                                />
-                            </React.Fragment>
-                        ))
-                        : null}
-
-                </div>
-            </div>
-            <div className="business-create">
-                <form className="busines-create-form" onSubmit={handleCreateStore}>
-                    <div >
-                        <h2 className="business-create-title">Cadastrar novo estabelecimento</h2>
-                        <TextField
-                            label="Nome do negócio"
-                            size="small"
-                            variant="outlined"
-                            onChange={(e) => setName(e.target.value)}
-                            value={name}
-                            style={{ width: 350 }}
-                        />
-                        <TextField
-                            label="Categoria"
-                            select
-                            size="small"
-                            variant="outlined"
-                            SelectProps={{
-                                native: true,
-                            }}
-                            style={{ width: 350, marginTop: 15 }}
-                            onChange={(e) => setCategory(e.target.value)}
-                        >
-                            <option value="" defaultValue hidden></option>
-                            <option value="Bar">Bar</option>
-                            <option value="Café">Café</option>
-                            <option value="Restaurante">Resturante</option>
-                            <option value="Casa Noturna">Casa Noturna</option>
-                        </TextField>
-                        <TextField
-                            label="Telefone"
-                            size="small"
-                            variant="outlined"
-                            style={{ width: 350, marginTop: 15 }}
-                            InputProps={{
-                                inputComponent: PhoneMaskCustom,
-                            }}
-
-                        />
-                        <TextField
-                            label="CEP"
-                            size="small"
-                            variant="outlined"
-                            onChange={(e) => setCep(e.target.value)}
-                            value={cep}
-                            style={{ width: 350, marginTop: 15 }}
-                            inputProps={{ maxLength: 8 }}
-                        />
-                        <div className="form-bussiness-adress">
-                            <div>
-                                <TextField
-                                    label="Rua"
-                                    size="small"
-                                    variant="outlined"
-                                    onChange={(e) => setStreet(e.target.value)}
-                                    value={street}
-                                    style={{ width: 277, marginTop: 15, marginRight: 3 }}
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    label="Nº"
-                                    size="small"
-                                    variant="outlined"
-                                    onChange={(e) => setNumber(e.target.value)}
-                                    value={number}
-                                    style={{ width: 70, marginTop: 15 }}
-                                />
-                            </div>
-                        </div>
-                        <div className="form-bussiness-adress">
-                            <div>
-                                <TextField
-                                    label="Bairro"
-                                    size="small"
-                                    variant="outlined"
-                                    onChange={(e) => setBairro(e.target.value)}
-                                    value={bairro}
-                                    style={{ width: 137, marginTop: 15, marginRight: 3 }}
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    label="Cidade"
-                                    size="small"
-                                    variant="outlined"
-                                    onChange={(e) => setCity(e.target.value)}
-                                    value={city}
-                                    style={{ width: 137, marginTop: 15, marginRight: 3, marginBottom: 15 }}
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    label="UF"
-                                    size="small"
-                                    variant="outlined"
-                                    onChange={(e) => setState(e.target.value)}
-                                    value={state}
-                                    style={{ width: 70, marginTop: 15 }}
-                                />
-                            </div>
-                        </div>
-                        <UploadImage imageUrl uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} />
-                        <CustomButton name="Cadastrar" id="business-create-button" onClick={handleCreateStore} />
+        <div className="business">:
+            < div style={{ width: 1200, display: 'flex', flexWrap: 'wrap' }}>
+                <div className="business-list">
+                    <div className="business-list-container">
+                        {store?.length
+                            ? store.map((item) => (
+                                <React.Fragment key={item._id}>
+                                    <StoreCard
+                                        name={item.name}
+                                        category={item.category}
+                                        phone={item.phone}
+                                        street={item.address?.street}
+                                        number={item.address?.number}
+                                        neighborhood={item.address?.neighborhood}
+                                        city={item.address?.city}
+                                        state={item.address?.state}
+                                        image={item.image}
+                                        storeId={item._id}
+                                    />
+                                </React.Fragment>
+                            ))
+                            : null}
 
                     </div>
-                </form>
+                </div>
+                <div className="business-create">
+                    <form className="busines-create-form" onSubmit={handleCreateStore}>
+                        <div >
+                            <h2 className="business-create-title">Cadastrar novo estabelecimento</h2>
+                            <TextField
+                                label="Nome do negócio"
+                                size="small"
+                                variant="outlined"
+                                onChange={(e) => setName(e.target.value)}
+                                value={name}
+                                style={{ width: 350 }}
+                            />
+                            <TextField
+                                label="Categoria"
+                                select
+                                size="small"
+                                variant="outlined"
+                                SelectProps={{
+                                    native: true,
+                                }}
+                                style={{ width: 350, marginTop: 15 }}
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
+                                <option value="" defaultValue hidden></option>
+                                <option value="Bar">Bar</option>
+                                <option value="Café">Café</option>
+                                <option value="Restaurante">Resturante</option>
+                                <option value="Casa Noturna">Casa Noturna</option>
+                            </TextField>
+                            <TextField
+                                label="Telefone"
+                                size="small"
+                                variant="outlined"
+                                style={{ width: 350, marginTop: 15 }}
+                                InputProps={{
+                                    inputComponent: PhoneMaskCustom,
+                                }}
+
+                            />
+                            <TextField
+                                label="CEP"
+                                size="small"
+                                variant="outlined"
+                                onChange={(e) => setCep(e.target.value)}
+                                value={cep}
+                                style={{ width: 350, marginTop: 15 }}
+                                inputProps={{ maxLength: 8 }}
+                            />
+                            <div className="form-bussiness-adress">
+                                <div>
+                                    <TextField
+                                        label="Rua"
+                                        size="small"
+                                        variant="outlined"
+                                        onChange={(e) => setStreet(e.target.value)}
+                                        value={street}
+                                        style={{ width: 277, marginTop: 15, marginRight: 3 }}
+                                    />
+                                </div>
+                                <div>
+                                    <TextField
+                                        label="Nº"
+                                        size="small"
+                                        variant="outlined"
+                                        onChange={(e) => setNumber(e.target.value)}
+                                        value={number}
+                                        style={{ width: 70, marginTop: 15 }}
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-bussiness-adress">
+                                <div>
+                                    <TextField
+                                        label="Bairro"
+                                        size="small"
+                                        variant="outlined"
+                                        onChange={(e) => setBairro(e.target.value)}
+                                        value={bairro}
+                                        style={{ width: 137, marginTop: 15, marginRight: 3 }}
+                                    />
+                                </div>
+                                <div>
+                                    <TextField
+                                        label="Cidade"
+                                        size="small"
+                                        variant="outlined"
+                                        onChange={(e) => setCity(e.target.value)}
+                                        value={city}
+                                        style={{ width: 137, marginTop: 15, marginRight: 3, marginBottom: 15 }}
+                                    />
+                                </div>
+                                <div>
+                                    <TextField
+                                        label="UF"
+                                        size="small"
+                                        variant="outlined"
+                                        onChange={(e) => setState(e.target.value)}
+                                        value={state}
+                                        style={{ width: 70, marginTop: 15 }}
+                                    />
+                                </div>
+                            </div>
+                            <UploadImage imageUrl uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} />
+                            <CustomButton name="Cadastrar" id="business-create-button" onClick={handleCreateStore} />
+
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     )

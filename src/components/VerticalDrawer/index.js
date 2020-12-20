@@ -107,13 +107,13 @@ const VerticalDrawer = (props, dispatchLogout) => {
                             </ListItem>
                         </List>
                     </Collapse>
-                    <ListItem button component={Link} to="/jobs">
+                    <ListItem button component={Link} to="/search-staff">
                         <ListItemIcon>
                             <FiIcons.FiSearch size={24} color="#523BE4" />
                         </ListItemIcon>
                         <ListItemText primary="Profissionais" />
                     </ListItem>
-                    <ListItem button component={Link} to="/jobs">
+                    <ListItem button component={Link} to="/finance">
                         <ListItemIcon>
                             <FiIcons.FiRepeat size={24} color="#523BE4" />
                         </ListItemIcon>
@@ -121,7 +121,7 @@ const VerticalDrawer = (props, dispatchLogout) => {
                     </ListItem>
                 </div>
                 <div style={{ position: 'absolute', bottom: 15, width: '100%' }}>
-                    <ListItem button component={Link} to="/jobs">
+                    <ListItem button component={Link} to="/settings">
                         <ListItemIcon>
                             <FiIcons.FiSettings size={24} color="#523BE4" />
                         </ListItemIcon>

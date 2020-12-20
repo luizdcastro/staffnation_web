@@ -1,0 +1,13 @@
+.finance {
+    display: flex;
+    justify-content: center;
+    margin-left: 240px;
+    height: 95vh; 
+    margin-top: 70px; 
+}
+
+@media screen and (max-width: 600px) {
+    .finance {
+      margin-left: 0
+    }
+  }

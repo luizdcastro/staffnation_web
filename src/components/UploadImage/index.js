@@ -5,8 +5,6 @@ import filesize from 'filesize';
 import Dropzone from 'react-dropzone';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
-import * as FiIcons from "react-icons/fi";
-
 
 import {
     uploadImage,
