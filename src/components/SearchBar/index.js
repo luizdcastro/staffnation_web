@@ -13,7 +13,7 @@ const SearchBar = ({ onChange }) => {
                 type="text"
                 onChange={onChange}
             />
-            <FiIcons.FiMoreVertical className="filter-icon" style={{ fontSize: 28 }} />
+            <FiIcons.FiMoreVertical className="filter-icon" style={{ fontSize: 0 }} />
         </div>
     );
 };

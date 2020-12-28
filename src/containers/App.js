@@ -2,11 +2,13 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+import LandingPage from '../pages/LandingPage'
 import VerticalDrawer from '../components/VerticalDrawer'
 import HomePage from '../pages/HomePage'
 import CreateJobPage from '../pages/CreateJobPage'
 import ListJobsPage from '../pages/ListJobsPage'
 import LoginPage from '../pages/LoginPage'
+import RegisterPage from '../pages/RegisterPage'
 import BusinessPage from '../pages/BusinessPage'
 import EditStorePage from '../pages/EditStorePage'
 import EditJobPage from '../pages/EditJobPage'
@@ -15,28 +17,25 @@ import SearchStaffPage from '../pages/SeachStaffPage'
 import SettingsPage from '../pages/SettingsPage'
 import FinancePage from '../pages/FinancePage'
 
-import { logoutUser } from "../redux/actions/AuthActions";
-
-const App = ({ user, dispatchLogout }) => {
+const App = ({ user }) => {
 
   return (
     <React.Fragment>
       {user.isLoggedIn ?
-        <VerticalDrawer
-          onLogout={dispatchLogout}
-        />
+        <VerticalDrawer />
         : null
       }
       <div className="App">
         {!user.isLoggedIn ? (
           <Switch>
-            <Route exact path="/" component={LoginPage} />
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/register" component={RegisterPage} />
             <Redirect to="/" />
           </Switch>
         ) : (
             <Switch>
-              <Route exact path="/" component={HomePage} onLogout={dispatchLogout}
-              />s
+              <Route exact path="/" component={HomePage} />
               <Route exact path="/create-job" component={CreateJobPage} />
               <Route exact path="/list-jobs" component={ListJobsPage} />
               <Route exact path="/business" component={BusinessPage} />
@@ -56,9 +55,5 @@ const App = ({ user, dispatchLogout }) => {
 
 const mapStateToProps = (state) => ({ user: state.user });
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatchLogout: () => dispatch(logoutUser()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
 

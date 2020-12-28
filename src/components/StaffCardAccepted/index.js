@@ -7,7 +7,7 @@ import * as FiIcons from "react-icons/fi";
 
 
 const StaffCardAccepted = ({ name, image, rating, phone, neighborhood, city, categories = [] }) => {
-    const [value, setValue] = useState('')
+    const [value, setValue] = useState(0)
 
     return (
         <div className="staffAccepted-card">
@@ -35,8 +35,8 @@ const StaffCardAccepted = ({ name, image, rating, phone, neighborhood, city, cat
             <div style={{ display: 'block' }}>
                 <div className="staffAccepted-button-content">
                     <p className="staffAccepted-card-text">Liberar pagamento</p>
-                    <Link className="staffAccepted-button-payment">
-                        <p style={{ fontWeight: 600 }}>R$ 150,00</p>
+                    <Link className="staffAccepted-button-payment" to="#">
+                        <p style={{ fontWeight: 700 }}>R$ 150,00</p>
                         <FiIcons.FiArrowRight size="14" style={{ marginLeft: 6 }} />
                     </Link>
                 </div>

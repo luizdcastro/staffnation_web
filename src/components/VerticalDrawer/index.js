@@ -17,9 +17,9 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import * as FiIcons from 'react-icons/fi'
-
-import { logoutUser } from "../../redux/actions/AuthActions";
 
 const drawerWidth = 240;
 
@@ -35,7 +35,10 @@ const useStyles = makeStyles((theme) => ({
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
-        backgroundColor: '#523BE4'
+        backgroundColor: '#523BE4',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -52,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const VerticalDrawer = (props, dispatchLogout) => {
+const VerticalDrawer = (props) => {
 
     const { window } = props;
     const classes = useStyles();
@@ -138,7 +141,7 @@ const VerticalDrawer = (props, dispatchLogout) => {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
+            <AppBar position="fixed" className={classes.appBar} >
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -149,15 +152,22 @@ const VerticalDrawer = (props, dispatchLogout) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h5" noWrap>
+                    <Typography variant="h5" noWrap style={{ fontWeight: 700, fontSize: 22 }}>
                         staffnation
           </Typography>
                 </Toolbar>
+                <div style={{ justifyContent: 'flex-end', marginRight: 30 }}>
+                    <Link to="#">
+                        <NotificationsIcon style={{ width: 26, height: 26, marginRight: 10, color: '#fff' }} />
+                    </Link>
+                    <Link to="/settings">
+                        <AccountCircle style={{ width: 26, height: 26, color: '#fff' }} />
+                    </Link>
+                </div>
             </AppBar>
             <nav className={classes.drawer} aria-label="mailbox folders">
                 <Hidden smUp implementation="css">
                     <Drawer
-                        dispatchLogout
                         container={container}
                         variant="temporary"
                         anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -192,8 +202,5 @@ const VerticalDrawer = (props, dispatchLogout) => {
 }
 const mapStateToProps = (state) => ({ user: state.user });
 
-const mapDispatchToProps = (dispatch) => ({
-    dispatchLogout: () => dispatch(logoutUser()),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(VerticalDrawer);
+export default connect(mapStateToProps)(VerticalDrawer);

@@ -53,7 +53,10 @@ const EditStorePage = ({ image, store, dispatchResetImage, dispatchGetStore, dis
     let history = useHistory();
     const { storeId } = useParams()
 
-    useEffect(() => dispatchGetStore(storeId), [storeId,])
+    useEffect(() =>
+        dispatchGetStore(storeId),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [storeId])
 
     const editableData = store
 
@@ -64,8 +67,8 @@ const EditStorePage = ({ image, store, dispatchResetImage, dispatchGetStore, dis
             setPhone(editableData.data?.phone)
             setCep(editableData.data?.address.cep)
             setNumber(editableData.data?.address.number)
-            let uploadedImage = editableData.data?.image
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [editableData]);
 
     const handleUpdateStore = (event) => {
@@ -116,12 +119,14 @@ const EditStorePage = ({ image, store, dispatchResetImage, dispatchGetStore, dis
         if (cep.length >= 8) {
             getUserAddress();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cep]);
 
     useEffect(() => {
         if (number.length) {
             setAddress({ ...address, number: number });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [number]);
 
     return (

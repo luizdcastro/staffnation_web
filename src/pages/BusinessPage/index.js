@@ -10,6 +10,7 @@ import StoreCard from '../../components/StoreCard'
 
 import { createStore, getAllStores } from '../../redux/actions/StoreActions'
 import { resetImage } from '../../redux/actions/ImageActions'
+import NoResult from '../../assets/no-result-search.png'
 
 import './styles.css'
 
@@ -58,6 +59,7 @@ const BusinessPage = ({
 
     useEffect(() => {
         dispatchGetAllStores(user.businessId)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getUserAddress = () => {
@@ -90,12 +92,14 @@ const BusinessPage = ({
         if (cep.length >= 8) {
             getUserAddress();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cep]);
 
     useEffect(() => {
         if (number.length) {
             setAddress({ ...address, number: number });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [number]);
 
     const handleCreateStore = (event) => {
@@ -126,29 +130,38 @@ const BusinessPage = ({
     };
 
     return (
-        <div className="business">:
-            < div style={{ width: 1200, display: 'flex', flexWrap: 'wrap' }}>
+        <div className="business">
+            <div style={{ width: 1200, display: 'flex', flexWrap: 'wrap' }}>
                 <div className="business-list">
-                    <div className="business-list-container">
-                        {store?.length
-                            ? store.map((item) => (
-                                <React.Fragment key={item._id}>
-                                    <StoreCard
-                                        name={item.name}
-                                        category={item.category}
-                                        phone={item.phone}
-                                        street={item.address?.street}
-                                        number={item.address?.number}
-                                        neighborhood={item.address?.neighborhood}
-                                        city={item.address?.city}
-                                        state={item.address?.state}
-                                        image={item.image}
-                                        storeId={item._id}
-                                    />
-                                </React.Fragment>
-                            ))
-                            : null}
+                    <div style={{ marginTop: '5%' }}>
+                        <h2 className="business-list-title">Meus estabelecimentos</h2>
+                        <div className="business-list-container">
+                            {store?.length
+                                ? store.map((item) => (
+                                    <React.Fragment key={item._id}>
+                                        <StoreCard
+                                            name={item.name}
+                                            category={item.category}
+                                            phone={item.phone}
+                                            street={item.address?.street}
+                                            number={item.address?.number}
+                                            neighborhood={item.address?.neighborhood}
+                                            city={item.address?.city}
+                                            state={item.address?.state}
+                                            image={item.image}
+                                            storeId={item._id}
+                                        />
+                                    </React.Fragment>
+                                ))
+                                :
+                                <div style={{ marginTop: 50 }}>
+                                    <p style={{ fontWeight: 400, color: 'grey', fontSize: 18, textAlign: 'center' }}>Nenhum item foi encontrado!</p>
+                                    <p style={{ fontWeight: 300, color: 'grey', fontSize: 14, textAlign: 'center' }}>Você pode criar seus estabelecimentos no formulário ao lado :) </p>
+                                    <img src={NoResult} style={{ width: 350, height: 270, marginTop: 50 }} />
+                                </div>
+                            }
 
+                        </div>
                     </div>
                 </div>
                 <div className="business-create">

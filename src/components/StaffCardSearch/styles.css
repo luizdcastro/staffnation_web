@@ -70,3 +70,24 @@
     font-size: 14px;
     color: #484848;
 }
+
+.staff-job-select{
+    display: block;
+    width: 160px;
+    height: 28px;
+    background-color: #fff;
+    border: solid 1px #dadce1;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: -8px;
+  }
+  
+  .staff-job-select:focus {
+    outline: none;
+    border: solid 1px #523BE4;
+  }
+  
+  .staff-job-select:hover {
+    border: solid 1px #523BE4;
+  }

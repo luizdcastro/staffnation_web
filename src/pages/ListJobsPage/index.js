@@ -6,11 +6,14 @@ import JobCard from '../../components/JobCard'
 
 import { getAllJobs } from '../../redux/actions/JobActions'
 
+import NoResult from '../../assets/no-result-search.png'
+
 import './styles.css'
 
 const ListJobsPage = ({ user, job, dispatchGetAllJobs }) => {
     const [value, setValue] = useState(0);
     const [openJobs, setOpenJobs] = useState(true)
+    // eslint-disable-next-line
     const [closeJobs, setCloseJobs] = useState(false)
 
     const handleChange = (event, newValue) => {
@@ -19,6 +22,7 @@ const ListJobsPage = ({ user, job, dispatchGetAllJobs }) => {
 
     useEffect(() => {
         dispatchGetAllJobs(user.businessId)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -44,18 +48,25 @@ const ListJobsPage = ({ user, job, dispatchGetAllJobs }) => {
                             ? job.map((item) => (
                                 <React.Fragment key={item._id}>
                                     <JobCard
-                                        name={item.store.name}
+                                        name={item.store?.name}
                                         category={item.category}
                                         payment={item.payment}
                                         date={item.date}
                                         timeStart={item.time.start}
                                         timeEnd={item.time.end}
-                                        image={item.store.image}
+                                        image={item.store?.image}
                                         jobId={item._id}
                                     />
                                 </React.Fragment>
                             ))
-                            : null
+                            :
+                            <div style={{ marginTop: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                                <div >
+                                    <p style={{ fontWeight: 400, color: 'grey', fontSize: 18, textAlign: 'center' }}>Nenhum item foi encontrado!</p>
+                                    <p style={{ fontWeight: 300, color: 'grey', fontSize: 14, textAlign: 'center' }}>Você pode criar novas vagas no menu anunciar :) </p>
+                                    <img src={NoResult} style={{ width: 350, height: 270, marginTop: 50 }} />
+                                </div>
+                            </div>
                         :
                         null
                     }

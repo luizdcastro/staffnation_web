@@ -78,6 +78,7 @@ const UploadImage = ({ dispatchUploadImage, dispatchDeleteImage, uploadedFiles, 
         if (uploadedFiles.length) {
             handleRequest();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [droppedFile]);
 
     const UploadMessage = ({ message }) => {

@@ -105,7 +105,6 @@ NumberFormatCustom.propTypes = {
     inputRef: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    maxLength: 3
 };
 
 
@@ -133,6 +132,7 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
     useEffect(() => {
         dispatchGetAllStores(user.businessId)
         setAvaliableStores(store)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleChange = (event) => {
@@ -153,7 +153,7 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
             time,
             values.numberformat,
             description,
-            history.push("/list-jobs"),
+            () => history.push("/list-jobs"),
             error => console.log(error),
         )
     }
@@ -238,7 +238,7 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
                                 inputComponent: NumberFormatCustom,
                             }}
                             inputProps={{
-                                maxlength: 9
+                                maxLength: 9
                             }}
                             onChange={handleChange}
                             value={values.numberformat}
@@ -293,7 +293,7 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
                             variant="outlined"
                             style={{ width: 350, marginTop: 15 }}
                             inputProps={{
-                                maxlength: 152
+                                maxLength: 152
                             }}
                             onChange={(e) => setDescription(e.target.value)}
                             valeu={description}

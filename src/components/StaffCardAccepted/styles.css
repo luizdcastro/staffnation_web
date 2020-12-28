@@ -52,7 +52,13 @@
     justify-content: center;
     border-radius: 5px;
     padding: 5px;
-    margin-top: 5px;
+    margin-top: 5px;    
+}
+
+.staffAccepted-button-payment:hover {
+    border: solid 1px #523BE4;
+    color: #fff;
+    background-color: #523BE4;
 }
 
 .staffAccepted-card-title{

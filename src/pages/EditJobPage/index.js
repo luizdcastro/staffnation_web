@@ -139,6 +139,7 @@ const EditJobPage = ({ user, store, job, dispatchGetAllStores, dispatchGetJob, d
 
     useEffect(() => {
         dispatchGetJob(jobId)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const editableData = job
@@ -159,6 +160,7 @@ const EditJobPage = ({ user, store, job, dispatchGetAllStores, dispatchGetJob, d
     useEffect(() => {
         dispatchGetAllStores(user.businessId)
         setAvaliableStores(store)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 

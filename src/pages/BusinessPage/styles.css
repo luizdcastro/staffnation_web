@@ -14,7 +14,6 @@
 
 .business-list-container {
     display: block;
-    margin-top: 5%;
 }
 
 .business-create{    
@@ -24,8 +23,10 @@
 }
 
 .business-list-title{
-    font-weight: 700;
-    color: #484848;
+    font-size: 23px;
+     font-weight: 400;
+     color: #484848;
+     margin-bottom: 20px;
 }
 
 .busines-create-form{
@@ -44,11 +45,12 @@
 
 
 .business-create-title{
-    font-weight: 700;
-    font-size: 1.43rem;
+    font-size: 23px;
+    font-weight: 400;
     color: #484848;
     padding-bottom: 25px;
-    text-align: left;
+    margin-left: 3px;
+
 }
 
 .business-create-label{

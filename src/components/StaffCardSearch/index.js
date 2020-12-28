@@ -3,7 +3,7 @@ import './styles.css'
 import * as IoIcons from "react-icons/io5"
 
 
-const StaffCardSearch = ({ name, image, rating, phone, neighborhood, city, categories = [], handleAccepted }) => {
+const StaffCardSearch = ({ name, image, rating, phone, neighborhood, city, categories = [], handleAccepted, openJobs }) => {
 
     return (
         <div className="staff-search-card">
@@ -30,10 +30,20 @@ const StaffCardSearch = ({ name, image, rating, phone, neighborhood, city, categ
             </div>
             <div style={{ display: 'block' }}>
                 <div className="staff-search-button-content">
-                    <p className="staff-search-card-text"></p>
-
+                    <p className="staff-search-card-text">Convidar profissional</p>
                 </div>
                 <div className="staff-search-button-content">
+                    <select className="staff-job-select">
+                        <option value="" defaultValue hidden>Selecionar vaga</option>
+                        {openJobs?.length
+                            ? openJobs.map((item) => (
+                                <React.Fragment key={item._id}>
+                                    <option value={item._id}>{item.category} - {item.date.slice(0, 5)}</option>
+                                </React.Fragment>
+                            ))
+                            : null
+                        }
+                    </select>
                 </div>
             </div>
         </div>

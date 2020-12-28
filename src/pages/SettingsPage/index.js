@@ -39,15 +39,17 @@ const SettingsPage = ({ business, dispatchLogout, disptachGetMe, dispatchUpdateB
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
-    useEffect(() => disptachGetMe(), [])
+    useEffect(() => disptachGetMe(),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [])
 
     const editableData = business
 
     useMemo(() => {
-        if (editableData) {
+        if (editableData?.data) {
             setName(editableData?.data.name);
             setEmail(editableData?.data.email)
-            setPhone(editableData.data.phone)
+            setPhone(editableData?.data.phone)
         }
     }, [editableData]);
 

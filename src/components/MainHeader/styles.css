@@ -1,0 +1,108 @@
+.main-header{
+    position: sticky;
+    top: 0;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    height: 70px;   
+    width: 100vw;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.04);
+}
+
+.main-header-nav {
+    display: flex;
+    flex-direction: 'row';
+    align-items: center;
+    justify-content: space-between;
+    width: 70vw;
+ }
+
+.main-header-menu{
+    display: flex;
+    flex-direction: 'row';
+}
+
+.main-header-link{
+    color: #523BE4;
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.main-header-register{
+    border: solid 1px #523BE4;
+    color: #523BE4;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 8px;    
+}
+
+.dropdown-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(3px);
+    background-color: rgba(43, 59, 74, 0.6);
+    z-index: 2;
+  }
+  
+  .dropdown-menu {
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #fafafa;
+    padding: 30px;
+  }
+
+  .menu-dropdown__icon {
+    padding-right: 8px;
+  }
+
+  .menu-item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 0.5rem;
+    color: #523BE4;
+    font-weight: 600;
+  }
+
+  .menu-item-register{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 0.5rem;
+    color: #523BE4;
+    font-weight: 600;
+    border: solid 1px #523BE4;
+    color: #523BE4;
+    margin-top: 8px;
+  }
+
+  .menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    filter: brightness(1.2);
+  }
+
+  .menu-item-register:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    filter: brightness(1.2);
+  }
+
+  .close-menu__icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-bottom: 15px;
+  }
