@@ -5,7 +5,7 @@ export default function storeReducer(state = [], action) {
         case constants.CREATE_JOB:
             return { ...action.payload };
         case constants.GET_JOB:
-            return { ...action.payload };
+            return [...action.payload];
         case constants.GET_ALL_JOBS:
             return [...action.payload];
         case constants.UPDATE_JOB:

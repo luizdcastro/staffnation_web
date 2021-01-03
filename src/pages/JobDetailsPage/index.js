@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { getJob, createAccepted, removeAccepted, createPending, removePending } from '../../redux/actions/JobActions'
+import { getAllJobs, createAccepted, removeAccepted, createPending, removePending } from '../../redux/actions/JobActions'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
@@ -13,7 +13,7 @@ import './styles.css'
 
 const JobDetailsPage = ({
     job,
-    dispatchGetJob,
+    dispatchGetAllJobs,
     dispatchCreateAccepted,
     dispatchCreatePending,
     dispatchRemoveAccepted,
@@ -22,12 +22,12 @@ const JobDetailsPage = ({
     const [value, setValue] = useState(0);
     const [accepted, setAccepted] = useState(true)
     const [pending, setPending] = useState(false)
+    const [jobData, setJobData] = useState([])
     const { jobId } = useParams()
 
     useEffect(() => {
-        dispatchGetJob(jobId)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+        setJobData(job.filter(el => el._id == jobId))
+    }, [jobId])
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -65,16 +65,16 @@ const JobDetailsPage = ({
         <div className="jobDetails">
             <div style={{ display: 'block', width: 1050 }}>
                 <div className="job-details-info">
-                    <p style={{ fontSize: 20, color: '#484848', marginBottom: 12, fontWeight: 700 }}>{job[0]?.store.name}</p>
+                    <p style={{ fontSize: 20, color: '#484848', marginBottom: 12, fontWeight: 700 }}>{jobData[0]?.store.name}</p>
                     <p style={{ fontSize: 12, color: '#523BE4', fontWeight: 600, textTransform: 'uppercase', marginBottom: 3 }}>Detalhes da Vaga</p>
-                    <p className="job-details-text">Função: {job[0]?.category}</p>
-                    <p className="job-details-text">Pagamento: R$ {job[0]?.payment.toFixed(2)}</p>
-                    <p className="job-details-text">Data: {job[0]?.date}</p>
-                    <p className="job-details-text">Horário: {job[0]?.time.start} às {job[0]?.time.end}</p>
-                    <p className="job-details-text">Descrição: {job[0]?.description} </p>
+                    <p className="job-details-text">Função: {jobData[0]?.category}</p>
+                    <p className="job-details-text">Pagamento: R$ {jobData[0]?.payment.toFixed(2)}</p>
+                    <p className="job-details-text">Data: {jobData[0]?.date}</p>
+                    <p className="job-details-text">Horário: {jobData[0]?.time.start} às {jobData[0]?.time.end}</p>
+                    <p className="job-details-text">Descrição: {jobData[0]?.description} </p>
                     <p style={{ fontSize: 12, color: '#523BE4', fontWeight: 600, textTransform: 'uppercase', marginBottom: 3, marginTop: 15 }}>Endereço</p>
-                    <p className="job-details-text">{job[0]?.store.address.street}, Nº {job[0]?.store.address.number}</p>
-                    <p className="job-details-text">{job[0]?.store.address.neighborhood}, {job[0]?.store.address.city} - {job[0]?.store.address.state}</p>
+                    <p className="job-details-text">{jobData[0]?.store.address.street}, Nº {jobData[0]?.store.address.number}</p>
+                    <p className="job-details-text">{jobData[0]?.store.address.neighborhood}, {jobData[0]?.store.address.city} - {jobData[0]?.store.address.state}</p>
                 </div>
                 <div style={{ flexGrow: 1, marginTop: 10 }}>
                     <Tabs
@@ -91,8 +91,8 @@ const JobDetailsPage = ({
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                     {accepted ? (
-                        job[0].applicationsAccepted.lenght >= 1
-                            ? job[0].applicationsAccepted.map((item) => (
+                        jobData[0]?.applicationsAccepted.length >= 1
+                            ? jobData[0]?.applicationsAccepted.map((item) => (
                                 <React.Fragment key={item._id}>
                                     <StaffCardAccepted
                                         key={item._id}
@@ -115,10 +115,11 @@ const JobDetailsPage = ({
                                 </div>
                             </div>
 
-                    ) : pending ? job[0].applicationsPending.lenght >= 1
-                        ? job[0].applicationsPending.map((item) => (
+                    ) : pending ? jobData[0].applicationsPending.length >= 1
+                        ? jobData[0].applicationsPending.map((item) => (
                             <React.Fragment key={item._id}>
                                 <StaffCardPending
+                                    staffId={item._id}
                                     image={item.avatar.url}
                                     name={item.name}
                                     rating={item.rating.toFixed(2)}
@@ -132,7 +133,7 @@ const JobDetailsPage = ({
                                             jobId,
                                             () => {
                                                 dispatchRemovePending(item._id, jobId);
-                                                dispatchGetJob(jobId);
+                                                dispatchGetAllJobs();
                                                 sendPushNotification('ExponentPushToken[m4358uHMYWMDzWrnHBAQ7k]', item.name, 'Teste')
                                             },
                                             (error) => console.log(error)
@@ -157,7 +158,7 @@ const JobDetailsPage = ({
     )
 }
 const mapDispatchToProps = (dispatch) => ({
-    dispatchGetJob: (storeId) => dispatch(getJob(storeId)),
+    dispatchGetAllJobs: () => dispatch(getAllJobs()),
     dispatchCreateAccepted: (applicationsAccepted, jobId, onSuccess, onError) =>
         dispatch(createAccepted({ applicationsAccepted }, jobId, onSuccess, onError)),
     dispatchCreatePending: (applicationsPending, jobId, onSuccess, onError) =>

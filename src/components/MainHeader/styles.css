@@ -1,12 +1,9 @@
 .main-header{
-    position: sticky;
-    top: 0;
     background-color: #FFF;
     display: flex;
     justify-content: center;
     height: 70px;   
-    width: 100vw;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.04);
+    width: 100%;
 }
 
 .main-header-nav {
@@ -14,7 +11,8 @@
     flex-direction: 'row';
     align-items: center;
     justify-content: space-between;
-    width: 70vw;
+    max-width: 90%;
+    width: 1200px;
  }
 
 .main-header-menu{
@@ -23,15 +21,15 @@
 }
 
 .main-header-link{
-    color: #523BE4;
-    margin-right: 10px;
-    font-weight: 600;
+    color: #7350ff;
+    margin-right: 15px;
+    font-weight: 700;
 }
 
 .main-header-register{
-    border: solid 1px #523BE4;
-    color: #523BE4;
-    font-weight: 600;
+    border: solid 1px #7350ff;
+    color: #7350ff;
+    font-weight: 700;
     border-radius: 5px;
     padding: 8px;    
 }
@@ -46,8 +44,8 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    backdrop-filter: blur(3px);
-    background-color: rgba(43, 59, 74, 0.6);
+    backdrop-filter: blur(2px);
+    background-color:  rgba(0,0,0,0.4);
     z-index: 2;
   }
   
@@ -69,8 +67,8 @@
     align-items: center;
     border-radius: 5px;
     padding: 0.5rem;
-    color: #523BE4;
-    font-weight: 600;
+    color: #7350ff;
+    font-weight: 700;
   }
 
   .menu-item-register{
@@ -80,19 +78,15 @@
     justify-content: center;
     border-radius: 5px;
     padding: 0.5rem;
-    color: #523BE4;
-    font-weight: 600;
-    border: solid 1px #523BE4;
-    color: #523BE4;
-    margin-top: 8px;
+    color: #7350ff;
+    font-weight: 700;
+    border: solid 1px #7350ff;
+    background-color: #7350ff;
+    color: #fff;
+    margin-bottom: 8px;
   }
 
   .menu-item:hover {
-    background-color: rgba(0, 0, 0, 0.02);
-    filter: brightness(1.2);
-  }
-
-  .menu-item-register:hover {
     background-color: rgba(0, 0, 0, 0.02);
     filter: brightness(1.2);
   }

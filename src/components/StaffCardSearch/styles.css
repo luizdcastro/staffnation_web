@@ -27,27 +27,53 @@
     margin-right: 12px;    
     margin-bottom: 15px;
 }
+.staff-button-favorite{
+    color: #777;
+    margin-left: 8px;
+    padding: 5px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.staff-button-next{
+    color: #777;
+    margin-left: 8px;
+    padding: 5px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+
+.staff-button-next:hover{
+    color: #7350ff;
+    background-color: rgba(0,0,0,0.04);
+    border-radius: 50%;
+}
+
+.staff-button-favorite:hover{
+    color: #ff595e;
+    background-color: rgba(0,0,0,0.04);
+    border-radius: 50%;
+}
+
 .staff-search-category-box {
     display: flex;
     justify-content: center;
     align-items: center;
     padding-left: 4px;
     padding-right: 4px;
-    border: solid 1px #523BE4;
-    color: #523BE4;
+    border: solid 1px #7350ff;
+    color: #7350ff;
     border-radius: 5px;
     margin-right: 5px;
-}
-
-.staff-search-button-payment{  
-    display: flex;
-    border: solid 1px #523BE4;
-    color: #523BE4;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    padding: 5px;
-    margin-top: 5px;
 }
 
 .staff-search-card-title{
@@ -56,6 +82,7 @@
     color: #484848;
     line-height: 20px;
     margin-top: 8px;
+    margin-bottom: 3px;
 }
 
 .staff-search-card-category {
@@ -85,9 +112,9 @@
   
   .staff-job-select:focus {
     outline: none;
-    border: solid 1px #523BE4;
+    border: solid 1px #7350ff;
   }
   
   .staff-job-select:hover {
-    border: solid 1px #523BE4;
+    border: solid 1px #7350ff;
   }

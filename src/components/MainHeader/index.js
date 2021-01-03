@@ -21,7 +21,7 @@ const MainHeader = () => {
         <div className="main-header">
             <nav className="main-header-nav">
                 <div>
-                    <h1 style={{ fontWeight: 600, color: '#484848' }}>staffnation</h1>
+                    <h1 style={{ fontWeight: 800, fontSize: 28, color: '#7350ff' }}>staffnation</h1>
                 </div>
                 {width <= 500 ? (
                     <>
@@ -36,26 +36,28 @@ const MainHeader = () => {
                                         <IoIcons.IoCloseOutline size={35} color="grey" />
                                     </Link>
                                     <Link
+                                        className="menu-item-register"
+                                        to="/register"
+                                        onClick={() => setMenuOpen(false)}>
+                                        Criar acesso
+                                    </Link>
+                                    <Link
                                         className="menu-item"
                                         to="/login"
                                         onClick={() => setMenuOpen(false)}>
                                         <IoIcons.IoLogInOutline className="menu-dropdown__icon" size={32} />
                                         Login
                                         </Link>
-                                    <Link
-                                        className="menu-item-register"
-                                        to="/register"
-                                        onClick={() => setMenuOpen(false)}>
-                                        Criar acesso
-                                    </Link>
                                 </div>
                             </div>
                         }
                     </>
                 ) :
                     <ul className="main-header-menu">
-                        <li>
-                            <Link className="main-header-link" to="/login">Login</Link>
+                        <li >
+                            <Link className="main-header-link" to="/login">
+                                Login
+                            </Link>
                         </li>
                         <li>
                             <Link className="main-header-register" to="/register">Criar acesso</Link>

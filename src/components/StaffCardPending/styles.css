@@ -72,3 +72,20 @@
     font-size: 14px;
     color: #484848;
 }
+
+.staff-pending-confirm-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 32px;
+    font-weight: 600;
+    color: #7350ff;
+    border: 1px solid #7350ff;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.staff-pending-confirm-button:hover {
+    filter: brightness(1.1);
+}

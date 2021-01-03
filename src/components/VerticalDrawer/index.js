@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
-        backgroundColor: '#523BE4',
+        backgroundColor: '#7350ff',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
@@ -77,19 +77,19 @@ const VerticalDrawer = (props) => {
                 <div style={{ display: 'block' }}>
                     <ListItem button component={Link} to="/home">
                         <ListItemIcon>
-                            <FiIcons.FiHome size={24} color="#523BE4" />
+                            <FiIcons.FiHome size={24} color="#7350ff" />
                         </ListItemIcon>
                         <ListItemText primary="Home" />
                     </ListItem>
                     <ListItem button component={Link} to="/business">
                         <ListItemIcon>
-                            <FiIcons.FiGrid size={24} color="#523BE4" />
+                            <FiIcons.FiGrid size={24} color="#7350ff" />
                         </ListItemIcon>
                         <ListItemText primary="Estabelecimento" />
                     </ListItem>
                     <ListItem button onClick={handleClick}>
                         <ListItemIcon>
-                            <FiIcons.FiUsers size={24} color="#523BE4" />
+                            <FiIcons.FiUsers size={24} color="#7350ff" />
                         </ListItemIcon>
                         <ListItemText primary="Vagas" />
                         {open ? <ExpandLess /> : <ExpandMore />}
@@ -112,13 +112,19 @@ const VerticalDrawer = (props) => {
                     </Collapse>
                     <ListItem button component={Link} to="/search-staff">
                         <ListItemIcon>
-                            <FiIcons.FiSearch size={24} color="#523BE4" />
+                            <FiIcons.FiSearch size={24} color="#7350ff" />
                         </ListItemIcon>
                         <ListItemText primary="Profissionais" />
                     </ListItem>
+                    <ListItem button component={Link} to="/favorites">
+                        <ListItemIcon>
+                            <FiIcons.FiHeart size={24} color="#7350ff" />
+                        </ListItemIcon>
+                        <ListItemText primary="Favoritos" />
+                    </ListItem>
                     <ListItem button component={Link} to="/finance">
                         <ListItemIcon>
-                            <FiIcons.FiRepeat size={24} color="#523BE4" />
+                            <FiIcons.FiRepeat size={24} color="#7350ff" />
                         </ListItemIcon>
                         <ListItemText primary="Financeiro" />
                     </ListItem>
@@ -126,7 +132,7 @@ const VerticalDrawer = (props) => {
                 <div style={{ position: 'absolute', bottom: 15, width: '100%' }}>
                     <ListItem button component={Link} to="/settings">
                         <ListItemIcon>
-                            <FiIcons.FiSettings size={24} color="#523BE4" />
+                            <FiIcons.FiSettings size={24} color="#7350ff" />
                         </ListItemIcon>
                         <ListItemText primary="Configurações" />
                     </ListItem>
@@ -152,9 +158,11 @@ const VerticalDrawer = (props) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h5" noWrap style={{ fontWeight: 700, fontSize: 22 }}>
-                        staffnation
+                    <Link style={{ color: '#fff' }} to="/">
+                        <Typography variant="h5" noWrap style={{ fontWeight: 700, fontSize: 22 }}>
+                            staffnation
           </Typography>
+                    </Link>
                 </Toolbar>
                 <div style={{ justifyContent: 'flex-end', marginRight: 30 }}>
                     <Link to="#">

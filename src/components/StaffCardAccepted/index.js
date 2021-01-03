@@ -8,6 +8,7 @@ import * as FiIcons from "react-icons/fi";
 
 const StaffCardAccepted = ({ name, image, rating, phone, neighborhood, city, categories = [] }) => {
     const [value, setValue] = useState(0)
+    const [paymentDone, setPaymentDone] = useState(false)
 
     return (
         <div className="staffAccepted-card">
@@ -33,23 +34,27 @@ const StaffCardAccepted = ({ name, image, rating, phone, neighborhood, city, cat
                 <p className="staffAccepted-card-text ">{neighborhood} - {city}</p>
             </div>
             <div style={{ display: 'block' }}>
-                <div className="staffAccepted-button-content">
-                    <p className="staffAccepted-card-text">Liberar pagamento</p>
-                    <Link className="staffAccepted-button-payment" to="#">
-                        <p style={{ fontWeight: 700 }}>R$ 150,00</p>
-                        <FiIcons.FiArrowRight size="14" style={{ marginLeft: 6 }} />
-                    </Link>
-                </div>
-                <div className="staffAccepted-button-content">
-                    <p className="staffAccepted-card-text">Avaliação</p>
-                    <Rating
-                        name="simple-controlled"
-                        value={value}
-                        onChange={(event, newValue) => {
-                            setValue(newValue);
-                        }}
-                    />
-                </div>
+                {!paymentDone ?
+                    <div style={{ paddingRight: 20, marginTop: 5 }}>
+                        <p>Liberar pagamento</p>
+                        <p style={{ marginBottom: 5 }}>Valor: 150,00</p>
+                        <Link className="staff-pending-confirm-button" onClick={() => { setPaymentDone(true) }} >
+                            Confirmar
+                            </Link>
+                    </div> :
+                    <div style={{ paddingRight: 20, marginTop: 4 }}>
+                        <p >Pagamento efetuado!</p>
+                        <p style={{ marginBottom: 10 }}>Valor: 150,00</p>
+                        <p >Avaliação</p>
+                        <Rating
+                            name="simple-controlled"
+                            value={value}
+                            onChange={(event, newValue) => {
+                                setValue(newValue);
+                            }}
+                        />
+                    </div>
+                }
             </div>
         </div>
     )

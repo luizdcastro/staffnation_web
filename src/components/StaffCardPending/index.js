@@ -2,10 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import './styles.css'
 import * as IoIcons from "react-icons/io5"
-import * as FiIcons from "react-icons/fi";
+import * as MdIcons from "react-icons/md";
+
+import LightButton from '../../components/LightButton'
 
 
-const StaffCardPending = ({ name, image, rating, phone, neighborhood, city, categories = [], handleAccepted }) => {
+const StaffCardPending = ({ name, image, rating, phone, neighborhood, city, categories = [], handleAccepted, staffId }) => {
     return (
         <div className="staffAccepted-card">
             <img src={image} alt="" className="staffAccepted-image" />
@@ -30,14 +32,16 @@ const StaffCardPending = ({ name, image, rating, phone, neighborhood, city, cate
                 <p className="staffAccepted-card-text ">{neighborhood} - {city}</p>
             </div>
             <div style={{ display: 'block' }}>
-                <div className="staffAccepted-button-content">
-                    <p className="staffAccepted-card-text">Aceitar candidatura</p>
-                    <Link className="staffAccepted-button-payment" onClick={handleAccepted}>
-                        <p style={{ fontWeight: 600 }}>Confirmar</p>
-                        <FiIcons.FiArrowRight size="14" style={{ marginLeft: 6 }} />
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Link className="staff-button-next" to={`/staff/${staffId}`}>
+                        <MdIcons.MdArrowForward size={25} />
                     </Link>
                 </div>
-                <div className="staffAccepted-button-content">
+                <div style={{ paddingRight: 20, marginTop: 20, }}>
+                    <p style={{ marginBottom: 5 }}>Aceitar candidatura?</p>
+                    <Link className="staff-pending-confirm-button" onClick={handleAccepted} >
+                        Confirmar
+                    </Link>
                 </div>
             </div>
         </div>

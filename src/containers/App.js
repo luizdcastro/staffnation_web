@@ -16,6 +16,8 @@ import JobDetailsPage from '../pages/JobDetailsPage'
 import SearchStaffPage from '../pages/SeachStaffPage'
 import SettingsPage from '../pages/SettingsPage'
 import FinancePage from '../pages/FinancePage'
+import FavoritePage from '../pages/FavoritePage'
+import StaffDetailsPage from '../pages/StaffDetailsPage'
 
 const App = ({ user }) => {
 
@@ -43,6 +45,8 @@ const App = ({ user }) => {
               <Route exact path="/edit-job/:jobId" component={EditJobPage} />
               <Route exact path="/job/:jobId" component={JobDetailsPage} />
               <Route exact path="/search-staff" component={SearchStaffPage} />
+              <Route exact path="/staff/:staffId" component={StaffDetailsPage} />
+              <Route exact path="/favorites" component={FavoritePage} />
               <Route exact path="/finance" component={FinancePage} />
               <Route exact path="/settings" component={SettingsPage} />
               <Redirect to="/" />

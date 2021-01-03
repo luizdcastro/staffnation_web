@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
-import SearchBar from '../../components/SearchBar'
 import StaffCardSearch from '../../components/StaffCardSearch'
 
 import { getAllStaffs } from '../../redux/actions/StaffActions'
@@ -19,8 +18,6 @@ const SearchStaffPage = ({
     dispatchAddFavorite,
     dispatchDeleteFavorite
 }) => {
-    const [filteredStaff, setFilteredStaff] = useState([])
-    const [search, setSearch] = useState('');
 
     useEffect(() => dispatchGetAllStaffs,
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,21 +26,6 @@ const SearchStaffPage = ({
     useEffect(() => dispatchGetMe,
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [])
-
-    useEffect(() => {
-        setFilteredStaff(staff);
-    }, [setFilteredStaff, staff]);
-
-    useEffect(() => {
-        setFilteredStaff(
-            staff.filter((staff) =>
-                staff.name?.toLowerCase().includes(search.toLowerCase()) ||
-                staff.address.neighborhood?.toLowerCase().includes(search.toLowerCase()) ||
-                staff.categories[0]?.name.includes(search) ||
-                staff.categories[1]?.name.includes(search)
-            )
-        );
-    }, [staff, search]);
 
     function handleAddFavorite(userId) {
         dispatchAddFavorite(
@@ -62,13 +44,14 @@ const SearchStaffPage = ({
             (error) => console.log(error)
         );
     }
+
     return (
         <div className="search-staff">
             <div className="search-staff-container">
-                <SearchBar onChange={(e) => setSearch(e.target.value)} />
+                <h1 style={{ textAlign: 'center' }}>Favoritos</h1>
                 <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', marginTop: 15 }}>
-                    {filteredStaff?.length >= 1
-                        ? filteredStaff.map((item) => (
+                    {business.data.favorites?.length >= 1
+                        ? business.data.favorites.map((item) => (
                             < React.Fragment key={item._id} >
                                 <StaffCardSearch
                                     staffId={item._id}
@@ -89,7 +72,7 @@ const SearchStaffPage = ({
                         <div style={{ marginTop: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
                             <div >
                                 <p style={{ fontWeight: 400, color: 'grey', fontSize: 18, textAlign: 'center' }}>Nenhum item foi encontrado!</p>
-                                <p style={{ fontWeight: 300, color: 'grey', fontSize: 14, textAlign: 'center' }}>Você pode tentar uma nova busca com termos diferentes :) </p>
+                                <p style={{ fontWeight: 300, color: 'grey', fontSize: 14, textAlign: 'center' }}>Você não adicionou nenhum staff em sua lista de favoritos :) </p>
                                 <img src={NoResult} style={{ width: 350, height: 270, marginTop: 50 }} />
                             </div>
                         </div>

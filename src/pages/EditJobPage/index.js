@@ -11,7 +11,7 @@ import NumberFormat from 'react-number-format';
 import TextField from '@material-ui/core/TextField';
 
 import { getAllStores } from '../../redux/actions/StoreActions'
-import { getJob, updateJob } from '../../redux/actions/JobActions'
+import { updateJob } from '../../redux/actions/JobActions'
 
 function PhoneMaskCustom(props) {
     const { inputRef, ...other } = props;
@@ -110,7 +110,8 @@ NumberFormatCustom.propTypes = {
 };
 
 
-const EditJobPage = ({ user, store, job, dispatchGetAllStores, dispatchGetJob, dispatchUpdateJob }) => {
+const EditJobPage = ({ user, store, job, dispatchGetAllStores, dispatchUpdateJob }) => {
+    const [jobData, setJobData] = useState([])
     const [selectedStore, setSelecteStore] = useState('')
     const [avaliableStores, setAvaliableStores] = useState([])
     const [category, setCategory] = useState('')
@@ -129,6 +130,11 @@ const EditJobPage = ({ user, store, job, dispatchGetAllStores, dispatchGetJob, d
 
     const [values, setValues] = useState('');
 
+    useEffect(() => {
+        setJobData(job.filter(el => el._id == jobId))
+    }, [jobId])
+
+
     const handleChange = (event) => {
         setValues({
             values,
@@ -137,12 +143,7 @@ const EditJobPage = ({ user, store, job, dispatchGetAllStores, dispatchGetJob, d
         setPayment(event.target.value)
     }
 
-    useEffect(() => {
-        dispatchGetJob(jobId)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    const editableData = job
+    const editableData = jobData
 
     useMemo(() => {
         if (editableData[0]) {
@@ -337,9 +338,7 @@ const EditJobPage = ({ user, store, job, dispatchGetAllStores, dispatchGetJob, d
 
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatchGetAllStores: (businessAccount) => dispatch(getAllStores(businessAccount)),
-    dispatchGetJob: (storeId) => dispatch(getJob(storeId)),
-    dispatchUpdateJob: (store, category, positions, date, time, payment, description, jobId, onSuccess, onError) =>
+    dispatchGetAllStores: (businessAccount) => dispatch(getAllStores(businessAccount)), dispatchUpdateJob: (store, category, positions, date, time, payment, description, jobId, onSuccess, onError) =>
         dispatch(updateJob({ store, category, positions, date, time, payment, description }, jobId, onSuccess, onError))
 });
 
