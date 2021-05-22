@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import MainHeader from '../../components/MainHeader'
 import Banner from '../../assets/business_login.png'
 import BannerTwo from '../../assets/restaurant_table.jpg'
+import Heart from '../../assets/heart.png'
+import Star from '../../assets/star.png'
 
 import './styles.css'
 
@@ -25,12 +27,14 @@ const LandingPage = () => {
         <div>
             <MainHeader />
             <div className="landing-page">
-                <div className="landing-page_hero">
-                    <h1 className="hero-title">Um novo jeito de contratar <br />profissionais para seu negócio.</h1>
-                    <h2 className="hero-subtitle">Encontre garçons, bartenders, seguranças e outros staffs <br />para bares, restaurantes ou eventos de forma simples.</h2>
-                    <div className="hero-button__container">
-                        <Link className="hero-button" to="#">Encontrar Staff</Link>
-                    </div>                    
+                <div className="landing-page_hero_container">
+                    <div className="landing-page_hero">
+                        <h1 className="hero-title">Um jeito novo de <br />contratar sua equipe.</h1>
+                        <h2 className="hero-subtitle">Contrate garçons, bartenders, seguranças e muito mais<br />para seu estabelecimento ou evento de forma simples.</h2>
+                        <div className="hero-button__container">
+                            <Link className="hero-button" to="#">Encontrar Profissionais</Link>
+                        </div>
+                    </div>                  
                 </div>
             </div>
         </div>
