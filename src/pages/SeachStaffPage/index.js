@@ -39,6 +39,7 @@ const SearchStaffPage = ({
             staff.filter((staff) =>
                 staff.name?.toLowerCase().includes(search.toLowerCase()) ||
                 staff.address.neighborhood?.toLowerCase().includes(search.toLowerCase()) ||
+                staff.address.city?.toLowerCase().includes(search.toLowerCase()) ||
                 staff.categories[0]?.name.includes(search) ||
                 staff.categories[1]?.name.includes(search)
             )

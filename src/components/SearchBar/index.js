@@ -9,7 +9,7 @@ const SearchBar = ({ onChange }) => {
             <FiIcons.FiSearch className="search-icon" style={{ fontSize: 28 }} />
             <input
                 className="search-input"
-                placeholder="Barcar pela função ou nome"
+                placeholder="Barcar pela região, função ou nome"
                 type="text"
                 onChange={onChange}
             />

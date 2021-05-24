@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -20,8 +19,9 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import * as FiIcons from 'react-icons/fi'
+import './styles.css'
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
-    },
+    }, 
 }));
 
 const VerticalDrawer = (props) => {
@@ -77,64 +77,64 @@ const VerticalDrawer = (props) => {
                 <div style={{ display: 'block' }}>
                     <ListItem button component={Link} to="/home">
                         <ListItemIcon>
-                            <FiIcons.FiHome size={24} color="#7350ff" />
+                            <FiIcons.FiHome size={22} color="#7350ff" />
                         </ListItemIcon>
-                        <ListItemText primary="Home" />
+                        <p className="vertical-title">Home</p>
                     </ListItem>
                     <ListItem button component={Link} to="/business">
                         <ListItemIcon>
-                            <FiIcons.FiGrid size={24} color="#7350ff" />
+                            <FiIcons.FiGrid size={22} color="#7350ff" />
                         </ListItemIcon>
-                        <ListItemText primary="Estabelecimento" />
+                        <p className="vertical-title">Estabelecimento</p>
                     </ListItem>
                     <ListItem button onClick={handleClick}>
                         <ListItemIcon>
-                            <FiIcons.FiUsers size={24} color="#7350ff" />
+                            <FiIcons.FiUsers size={22} color="#7350ff" />
                         </ListItemIcon>
-                        <ListItemText primary="Vagas" />
-                        {open ? <ExpandLess /> : <ExpandMore />}
+                        <p className="vertical-title">Vagas</p>
+                        {open ? <ExpandLess style={{ color: "grey" }}/> : <ExpandMore style={{ color: "grey" }}/>}
                     </ListItem>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested} component={Link} to="/create-job">
                                 <ListItemIcon>
-                                    <FiIcons.FiChevronRight size={24} color="grey" />
+                                    <FiIcons.FiChevronRight size={22} color="grey" />
                                 </ListItemIcon>
-                                <ListItemText primary="Anunciar" />
+                                <p className="vertical-title">Anunciar</p>
                             </ListItem>
                             <ListItem button className={classes.nested} component={Link} to="/list-jobs">
                                 <ListItemIcon>
-                                    <FiIcons.FiChevronRight size={24} color="grey" />
+                                    <FiIcons.FiChevronRight size={22} color="grey" />
                                 </ListItemIcon>
-                                <ListItemText primary="Listar" />
+                                <p className="vertical-title">Listar</p>
                             </ListItem>
                         </List>
                     </Collapse>
                     <ListItem button component={Link} to="/search-staff">
                         <ListItemIcon>
-                            <FiIcons.FiSearch size={24} color="#7350ff" />
+                            <FiIcons.FiSearch size={22} color="#7350ff" />
                         </ListItemIcon>
-                        <ListItemText primary="Profissionais" />
+                        <p className="vertical-title">Profissionais</p>
                     </ListItem>
                     <ListItem button component={Link} to="/favorites">
                         <ListItemIcon>
-                            <FiIcons.FiHeart size={24} color="#7350ff" />
+                            <FiIcons.FiHeart size={22} color="#7350ff" />
                         </ListItemIcon>
-                        <ListItemText primary="Favoritos" />
+                        <p className="vertical-title">Favoritos</p>
                     </ListItem>
                     <ListItem button component={Link} to="/finance">
                         <ListItemIcon>
-                            <FiIcons.FiRepeat size={24} color="#7350ff" />
+                            <FiIcons.FiRepeat size={22} color="#7350ff" />
                         </ListItemIcon>
-                        <ListItemText primary="Financeiro" />
+                        <p className="vertical-title">Financeiro</p>
                     </ListItem>
                 </div>
                 <div style={{ position: 'absolute', bottom: 15, width: '100%' }}>
                     <ListItem button component={Link} to="/settings">
                         <ListItemIcon>
-                            <FiIcons.FiSettings size={24} color="#7350ff" />
+                            <FiIcons.FiSettings size={22} color="#7350ff" />
                         </ListItemIcon>
-                        <ListItemText primary="Configurações" />
+                        <p className="vertical-title">Configurações</p>
                     </ListItem>
                 </div>
             </List>
@@ -166,10 +166,10 @@ const VerticalDrawer = (props) => {
                 </Toolbar>
                 <div style={{ justifyContent: 'flex-end', marginRight: 30 }}>
                     <Link to="#">
-                        <NotificationsIcon style={{ width: 26, height: 26, marginRight: 10, color: '#fff' }} />
+                        <NotificationsIcon style={{ width: 24, height: 24, marginRight: 10, color: '#fff' }} />
                     </Link>
                     <Link to="/settings">
-                        <AccountCircle style={{ width: 26, height: 26, color: '#fff' }} />
+                        <AccountCircle style={{ width: 24, height: 24, color: '#fff' }} />
                     </Link>
                 </div>
             </AppBar>
