@@ -26,7 +26,7 @@ const StaffCardSearch = ({
                 <p className="staff-search-card-title">{name.split(" ", 1)}</p>
                 <div style={{ display: 'flex', marginBottom: 8, alignItems: 'center' }}>
                     <p className="staff-search-card-text ">{rating}</p>
-                    <IoIcons.IoStar color="grey" size={12} style={{ marginLeft: 3, marginBottom: 3 }} />
+                    <IoIcons.IoStar color="gold" size={12} style={{ marginLeft: 3, marginBottom: 3 }} />
                 </div>
                 <div style={{ display: 'flex', marginBottom: 5 }}>
                     {categories.length >= 1 ?

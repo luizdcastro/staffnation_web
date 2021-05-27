@@ -1,13 +1,13 @@
 .store-card {
     display: flex;
     background-color: #fff;
-    width: 500px;
+    width: 460px;
     height: 150px;
+    border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.04);
     margin-right: 10px;
     padding-top: 12px;
     margin-bottom: 15px;
-
 }
 
 .store-image {
@@ -40,8 +40,8 @@
 
 .store-card-title{
     font-weight: 700;
-    font-size: 20px;
-    color: #484848;
+    font-size: 1.2rem;
+    color:rgba(0,0,0,.74);
     line-height: 20px;
     margin-top: 8px;
 }
@@ -49,13 +49,13 @@
 
 .store-card-category {
     font-weight: 400;
-    font-size: 14px;
-    color: #484848;
+    font-size: 0.82rem;
+    color:rgba(0,0,0,.74);
     margin-bottom: 18px;
 }
 
 .store-card-text {
     font-weight: 400;
-    font-size: 14px;
-    color: #484848;
+    font-size: 0.82rem;
+    color:rgba(0,0,0,.74);
 }

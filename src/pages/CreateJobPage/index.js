@@ -177,6 +177,8 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
                             style={{ width: 350 }}
                             onChange={(e) => setSelecteStore(e.target.value)}
                             value={selectedStore}
+                            inputProps={{style: {fontSize: 14}}} 
+                            InputLabelProps={{style: {fontSize: 14}}}    
                         >
                             <option value="" defaultValue hidden></option>
                             {avaliableStores?.length
@@ -199,6 +201,8 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
                             style={{ width: 350, marginTop: 15 }}
                             onChange={(e) => setCategory(e.target.value)}
                             value={category}
+                            inputProps={{style: {fontSize: 14}}} 
+                            InputLabelProps={{style: {fontSize: 14}}}    
                         >
                             <option value="" defaultValue hidden></option>
                             <option value="Bar">Bar</option>
@@ -219,6 +223,8 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
                             style={{ width: 350, marginTop: 15 }}
                             onChange={(e) => setPositions(e.target.value)}
                             value={positions}
+                            inputProps={{style: {fontSize: 14}}} 
+                            InputLabelProps={{style: {fontSize: 14}}}    
                         >
                             <option value="" defaultValue hidden></option>
                             <option value="1">1</option>
@@ -236,12 +242,14 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
                             style={{ width: 350, marginTop: 15 }}
                             InputProps={{
                                 inputComponent: NumberFormatCustom,
-                            }}
-                            inputProps={{
-                                maxLength: 9
-                            }}
+                            }}                           
                             onChange={handleChange}
                             value={values.numberformat}
+                            inputProps={{
+                                maxLength: 9,
+                                style: {fontSize: 14}
+                            }}
+                            InputLabelProps={{style: {fontSize: 14}}}    
                         />
                         <TextField
                             label="Data"
@@ -250,7 +258,9 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
                             style={{ width: 350, marginTop: 15 }}
                             InputProps={{
                                 inputComponent: DateMaskCustom,
+                                style: {fontSize: 14}
                             }}
+                            InputLabelProps={{style: {fontSize: 14}}}  
                             onChange={(e) => setDate(e.target.value)}
                             valeu={date}
 
@@ -264,7 +274,9 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
                                     style={{ width: 173.5, marginTop: 15, marginRight: 3 }}
                                     InputProps={{
                                         inputComponent: TimeMskCustom,
+                                        style: {fontSize: 14}
                                     }}
+                                    InputLabelProps={{style: {fontSize: 14}}}
                                     onChange={(e) => setTimeStart(e.target.value)}
                                     valeu={timeStart}
                                 />
@@ -277,7 +289,9 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
                                     style={{ width: 173.5, marginTop: 15 }}
                                     InputProps={{
                                         inputComponent: TimeMskCustom,
+                                        style: {fontSize: 14}
                                     }}
+                                    InputLabelProps={{style: {fontSize: 14}}}  
                                     onChange={(e) => setTimeEnd(e.target.value)}
                                     valeu={timeEnd}
                                 />
@@ -293,12 +307,14 @@ const CreateJobPage = ({ user, store, dispatchGetAllStores, dispatchCreateJob })
                             variant="outlined"
                             style={{ width: 350, marginTop: 15 }}
                             inputProps={{
-                                maxLength: 152
+                                maxLength: 152,
+                                style: {fontSize: 14}
                             }}
+                            InputLabelProps={{style: {fontSize: 14}}}   
                             onChange={(e) => setDescription(e.target.value)}
                             valeu={description}
                         />
-                        <CustomButton name="Cadastrar" id="createJob-create-button" onClick={handleCreateJob} />
+                        <CustomButton name="Cadastrar Vaga" id="createJob-create-button" onClick={handleCreateJob} />
                     </div>
                 </form>
             </div>

@@ -36,13 +36,13 @@ const ListJobsPage = ({ user, job, dispatchGetAllJobs }) => {
                         onChange={handleChange}
                         aria-label="disabled tabs example"
                         variant="fullWidth"
-                        style={{ marginBottom: 20 }}
+                        style={{ marginBottom: 30 }}
                     >
-                        <Tab label="Vagas abertas" style={{ textTransform: 'none', fontSize: '1rem' }} onClick={() => { setOpenJobs(true); setCloseJobs(false) }} />
-                        <Tab label="Vagas fechadas" style={{ textTransform: 'none', fontSize: '1rem' }} onClick={() => { setOpenJobs(false); setCloseJobs(true) }} />
+                        <Tab label="Vagas abertas"  style={{ textTransform: 'none', fontSize: '0.9rem' }} onClick={() => { setOpenJobs(true); setCloseJobs(false) }} />
+                        <Tab label="Vagas fechadas" style={{ textTransform: 'none', fontSize: '0.9rem'}} onClick={() => { setOpenJobs(false); setCloseJobs(true) }} />
                     </Tabs>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                <div className="list-jobs-itens">
                     {openJobs ?
                         job?.length
                             ? job.map((item) => (
@@ -56,8 +56,9 @@ const ListJobsPage = ({ user, job, dispatchGetAllJobs }) => {
                                         timeEnd={item.time.end}
                                         image={item.store?.image}
                                         jobId={item._id}
-                                    />
+                                    />                                    
                                 </React.Fragment>
+                                
                             ))
                             :
                             <div style={{ marginTop: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>

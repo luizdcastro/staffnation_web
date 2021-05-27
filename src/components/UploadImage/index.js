@@ -84,7 +84,7 @@ const UploadImage = ({ dispatchUploadImage, dispatchDeleteImage, uploadedFiles, 
     const UploadMessage = ({ message }) => {
         return (
             <div className="image-upload__message">
-                <p style={{ fontSize: '1rem', fontFamily: 'Roboto', fontWeight: 400, color: 'rgba(0, 0, 0, 0.54)', marginLeft: 10 }}>{message}</p>
+                <p style={{ fontSize: '1rem', fontFamily: 'Roboto', fontWeight: 400, color: 'rgba(0, 0, 0, 0.54)', marginLeft: 10, fontSize:14 }}>{message}</p>
             </div>
         );
     };

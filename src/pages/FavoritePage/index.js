@@ -48,25 +48,24 @@ const SearchStaffPage = ({
     return (
         <div className="search-staff">
             <div className="search-staff-container">
-                <h1 style={{ textAlign: 'center' }}>Favoritos</h1>
-                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', marginTop: 15 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', marginTop: 15 }}>
                     {business.data.favorites?.length >= 1
                         ? business.data.favorites.map((item) => (
                             < React.Fragment key={item._id} >
-                                <StaffCardSearch
-                                    staffId={item._id}
-                                    image={item.avatar.url}
-                                    name={item.name}
-                                    rating={item.rating.toFixed(2)}
-                                    phone={item.phone}
-                                    neighborhood={item.address?.neighborhood}
-                                    city={item.address?.city}
-                                    categories={item.categories}
-                                    favoriteStaffs={business.data?.favorites}
-                                    addFavorite={() => handleAddFavorite(item._id)}
-                                    deleteFavorite={() => handleDeleteFavorite(item._id)}
-                                />
-                            </React.Fragment>
+                            <StaffCardSearch
+                                staffId={item._id}
+                                image={item.avatar.url}
+                                name={item.name}
+                                rating={item.rating.toFixed(2)}
+                                phone={item.phone}
+                                neighborhood={item.address?.neighborhood}
+                                city={item.address?.city}
+                                categories={item.categories}
+                                favoriteStaffs={business.data?.favorites}
+                                addFavorite={() => handleAddFavorite(item._id)}
+                                deleteFavorite={() => handleDeleteFavorite(item._id)}
+                            />
+                        </React.Fragment>
                         ))
                         :
                         <div style={{ marginTop: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>

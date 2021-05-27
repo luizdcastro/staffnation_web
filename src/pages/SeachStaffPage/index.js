@@ -12,7 +12,6 @@ import './styles.css'
 
 const SearchStaffPage = ({
     staff,
-    job,
     business,
     dispatchGetMe,
     dispatchGetAllStaffs,
@@ -67,7 +66,7 @@ const SearchStaffPage = ({
         <div className="search-staff">
             <div className="search-staff-container">
                 <SearchBar onChange={(e) => setSearch(e.target.value)} />
-                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', marginTop: 15 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', marginTop: 15 }}>
                     {filteredStaff?.length >= 1
                         ? filteredStaff.map((item) => (
                             < React.Fragment key={item._id} >

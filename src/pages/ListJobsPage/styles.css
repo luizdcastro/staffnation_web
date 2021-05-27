@@ -31,6 +31,12 @@
   margin-left: 10px;
 }
 
+.list-jobs-itens {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center
+}
+
 @media screen and (max-width: 600px) {
     .list-jobs {
       margin-left: 0

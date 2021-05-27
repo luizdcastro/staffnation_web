@@ -134,7 +134,6 @@ const BusinessPage = ({
             <div style={{ width: 1200, display: 'flex', flexWrap: 'wrap' }}>
                 <div className="business-list">
                     <div style={{ marginTop: '5%' }}>
-                        <h2 className="business-list-title">Meus estabelecimentos</h2>
                         <div className="business-list-container">
                             {store?.length
                                 ? store.map((item) => (
@@ -174,13 +173,18 @@ const BusinessPage = ({
                                 variant="outlined"
                                 onChange={(e) => setName(e.target.value)}
                                 value={name}
-                                style={{ width: 350 }}
+                                style={{ width: 350}}
+                                inputProps={{style: {fontSize: 14}}} 
+                                InputLabelProps={{style: {fontSize: 14}}}                                
+                                                             
                             />
                             <TextField
                                 label="Categoria"
                                 select
                                 size="small"
                                 variant="outlined"
+                                inputProps={{style: {fontSize: 14}}} 
+                                InputLabelProps={{style: {fontSize: 14}}}     
                                 SelectProps={{
                                     native: true,
                                 }}
@@ -188,7 +192,7 @@ const BusinessPage = ({
                                 onChange={(e) => setCategory(e.target.value)}
                             >
                                 <option value="" defaultValue hidden></option>
-                                <option value="Bar">Bar</option>
+                                <option className="option-select-item" value="Bar">Bar</option>
                                 <option value="Café">Café</option>
                                 <option value="Restaurante">Resturante</option>
                                 <option value="Casa Noturna">Casa Noturna</option>
@@ -200,7 +204,9 @@ const BusinessPage = ({
                                 style={{ width: 350, marginTop: 15 }}
                                 InputProps={{
                                     inputComponent: PhoneMaskCustom,
+                                    style: {fontSize: 14}
                                 }}
+                                InputLabelProps={{style: {fontSize: 14}}}       
 
                             />
                             <TextField
@@ -210,7 +216,12 @@ const BusinessPage = ({
                                 onChange={(e) => setCep(e.target.value)}
                                 value={cep}
                                 style={{ width: 350, marginTop: 15 }}
-                                inputProps={{ maxLength: 8 }}
+                                inputProps={{ 
+                                    maxLength: 8 ,
+                                    style: {fontSize: 14}
+                                }}
+                                InputLabelProps={{style: {fontSize: 14}}}       
+
                             />
                             <div className="form-bussiness-adress">
                                 <div>
@@ -221,6 +232,8 @@ const BusinessPage = ({
                                         onChange={(e) => setStreet(e.target.value)}
                                         value={street}
                                         style={{ width: 277, marginTop: 15, marginRight: 3 }}
+                                        inputProps={{style: {fontSize: 14}}} 
+                                        InputLabelProps={{style: {fontSize: 14}}} 
                                     />
                                 </div>
                                 <div>
@@ -231,6 +244,8 @@ const BusinessPage = ({
                                         onChange={(e) => setNumber(e.target.value)}
                                         value={number}
                                         style={{ width: 70, marginTop: 15 }}
+                                        inputProps={{style: {fontSize: 14}}} 
+                                        InputLabelProps={{style: {fontSize: 14}}} 
                                     />
                                 </div>
                             </div>
@@ -243,6 +258,8 @@ const BusinessPage = ({
                                         onChange={(e) => setBairro(e.target.value)}
                                         value={bairro}
                                         style={{ width: 137, marginTop: 15, marginRight: 3 }}
+                                        inputProps={{style: {fontSize: 14}}} 
+                                        InputLabelProps={{style: {fontSize: 14}}} 
                                     />
                                 </div>
                                 <div>
@@ -253,6 +270,8 @@ const BusinessPage = ({
                                         onChange={(e) => setCity(e.target.value)}
                                         value={city}
                                         style={{ width: 137, marginTop: 15, marginRight: 3, marginBottom: 15 }}
+                                        inputProps={{style: {fontSize: 14}}} 
+                                        InputLabelProps={{style: {fontSize: 14}}} 
                                     />
                                 </div>
                                 <div>
@@ -263,11 +282,13 @@ const BusinessPage = ({
                                         onChange={(e) => setState(e.target.value)}
                                         value={state}
                                         style={{ width: 70, marginTop: 15 }}
+                                        inputProps={{style: {fontSize: 14}}} 
+                                        InputLabelProps={{style: {fontSize: 14}}} 
                                     />
                                 </div>
                             </div>
                             <UploadImage imageUrl uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} />
-                            <CustomButton name="Cadastrar" id="business-create-button" onClick={handleCreateStore} />
+                            <CustomButton name="Cadastrar Negócio" id="business-create-button" onClick={handleCreateStore} />
 
                         </div>
                     </form>

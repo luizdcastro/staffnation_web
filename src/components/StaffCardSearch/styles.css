@@ -2,8 +2,8 @@
     display: flex;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.04);
-    width: 500px;
-    min-width: 450px;
+    border-radius: 3px;
+    width: 460px;
     height: 150px;
     padding-top: 12px;
     margin-bottom: 15px;
@@ -70,32 +70,26 @@
     align-items: center;
     padding-left: 4px;
     padding-right: 4px;
-    border: solid 1px #7350ff;
-    color: #7350ff;
+    border: solid 1px #643efa;
+    color: #643efa;
     border-radius: 5px;
     margin-right: 5px;
-}
+    font-size: 0.8rem;}
+
 
 .staff-search-card-title{
-    font-weight: 700;
-    font-size: 17px;
-    color: #484848;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color:rgba(0,0,0,.74);
     line-height: 20px;
     margin-top: 8px;
     margin-bottom: 3px;
 }
 
-.staff-search-card-category {
-    font-weight: 400;
-    font-size: 14px;
-    color: #484848;
-    margin-bottom: 18px;
-}
-
 .staff-search-card-text {
     font-weight: 400;
-    font-size: 14px;
-    color: #484848;
+    font-size: 0.8rem;
+    color:rgba(0,0,0,.74);
 }
 
 .staff-job-select{
